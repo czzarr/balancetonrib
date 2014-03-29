@@ -1,0 +1,35 @@
+{
+  "name": "balancetonrib",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "browserify --debug index.js -o bundle.js",
+    "watch": "watchify -d index.js -o bundle.js"
+  },
+  "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^2.1.0",
+    "browserify-shim": "^3.3.2"
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "select2": "./lib/select2/select2.js"
+  },
+  "browserify-shim": {
+    "jquery": "jQuery",
+    "select2": {
+      "exports": "Select2",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  }
+}
