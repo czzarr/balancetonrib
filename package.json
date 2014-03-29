@@ -1,7 +1,8 @@
 {
   "name": "balancetonrib",
   "version": "0.0.0",
-  "description": "",
+  "description": "biatch",
+  "repository": "git",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +14,11 @@
   "dependencies": {
     "jquery": "^2.1.0",
     "browserify-shim": "^3.3.2",
-    "browser-request":"^0.3.1"
+    "browser-request": "^0.3.1",
+    "mongoose": "^3.8.8",
+    "express": "^3.5.1",
+    "once": "^1.3.0",
+    "validator": "^3.5.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
