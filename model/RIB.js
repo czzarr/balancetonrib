@@ -1,9 +1,7 @@
-var _ = require('underscore')
 var model = require('./')
 var mongoose = require('mongoose')
 var plugin = require('./plugin')
 var validate = require('mongoose-validator').validate
-var util = require('../util')
 
 var RIB = mongoose.Schema({
   bank: {
@@ -41,39 +39,6 @@ var RIB = mongoose.Schema({
     index: true,
     required: true
   }
-})
-
-// Trim whitespace
-RIB.pre('validate', function (next) {
-  var essay = this
-  essay.name = essay.name.trim()
-  next()
-})
-
-RIB.virtual('url').get(function () {
-  var essay = this
-  var collegeSlug = essay.populated('college') || essay.college
-  return '/' + collegeSlug + '/' + essay._id + '/'
-})
-
-RIB.virtual('searchDesc').get(function () {
-  var essay = this
-  var collegeSlug = essay.populated('college') || essay.college
-  var college = model.cache.colleges[collegeSlug]
-
-  return college.shortName + ' Admissions RIB'
-})
-
-// Sanitize essay to strip bad html before saving
-RIB.pre('save', function (next) {
-  var essay = this
-  if (essay.isModified('body')) {
-    essay.body = util.sanitizeHTML(essay.body)
-  }
-  if (essay.isModified('prompt')) {
-    essay.prompt = util.sanitizeHTML(essay.prompt)
-  }
-  next()
 })
 
 RIB.plugin(plugin.modifyDate)
