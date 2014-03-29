@@ -12,7 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "^2.1.0",
-    "browserify-shim": "^3.3.2"
+    "browserify-shim": "^3.3.2",
+    "browser-request":"^0.3.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
