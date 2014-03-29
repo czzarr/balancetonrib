@@ -17,12 +17,12 @@
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
-    "select2": "./lib/select2/select2.js"
+    "selectize": "./lib/selectize/dist/js/standalone/selectize.js"
   },
   "browserify-shim": {
     "jquery": "jQuery",
-    "select2": {
-      "exports": "Select2",
+    "selectize": {
+      "exports": "Selectize",
       "depends": [
         "jquery:jQuery"
       ]
