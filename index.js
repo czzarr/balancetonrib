@@ -11,6 +11,8 @@ var http = require('http')
 var model = require('./model')
 var logger = require('morgan')
 var path = require('path')
+var url = require('url')
+
 
 function addHeaders(req, res, next) {
   var extname = path.extname(url.parse(req.url).pathname)
@@ -54,14 +56,14 @@ app.use(favicon())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 app.use(cookieParser())
-app.use(csrf())
+//app.use(csrf())
 //app.use(app.router)
 
 require('./routes')(app)
 
 var server = http.createServer(app)
 
-var done = console.log.bind(console)
+var done = function () {}
 
 async.series([
   model.connect,
