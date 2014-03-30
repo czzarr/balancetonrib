@@ -4,9 +4,11 @@ module.exports = function (app) {
   require('./home')(app)
   //require('./static')(app)
 
-  //// Accounts
+  // Accounts
+  //require('./account')(app)
+  //require('./auth')(app)
+  require('./login')(app)
   //require('./signup')(app)
-  //require('./login')(app)
 
   //// Submit
   //require('./submit')(app)
