@@ -1,9 +1,15 @@
 var async = require('async')
 var config = require('./config')
-var debug = require('debug')('BalanceTonRib:site')
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
+var compress = require('compression')
+var csrf = require('csurf')
+var debug = require('debug')('site')
 var express = require('express')
+var favicon = require('static-favicon')
 var http = require('http')
 var model = require('./model')
+var logger = require('morgan')
 var path = require('path')
 
 function addHeaders(req, res, next) {
@@ -44,7 +50,6 @@ app.use(addHeaders)
 app.use(logger('dev'))
 app.use(compress())
 app.use(express.static(path.join(__dirname, 'static')))
-app.use(slashes(false))
 app.use(favicon())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
@@ -55,6 +60,8 @@ app.use(csrf())
 require('./routes')(app)
 
 var server = http.createServer(app)
+
+var done = console.log.bind(console)
 
 async.series([
   model.connect,

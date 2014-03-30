@@ -7,23 +7,23 @@ var RIB = mongoose.Schema({
   bank: {
     type: String,
     validate: [
-      validate({ message: '5 chiffres' }, 'isLength', 5, 5),
-      validate({ message: 'des chiffres' }, 'isNumeric')
+      validate({ message: '5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'des chiffres' }, 'isNumeric'),
       validate({ message: 'non vide' }, 'notEmpty')
     ]
   },
   indicator: {
     type: String,
     validate: [
-      validate({ message: '5 chiffres' }, 'isLength', 5, 5),
-      validate({ message: 'des chiffres' }, 'isNumeric')
+      validate({ message: '5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'des chiffres' }, 'isNumeric'),
       validate({ message: 'non vide' }, 'notEmpty')
     ]
   },
   accountNumber: {
     type: String,
     validate: [
-      validate({ message: '11 chiffres/lettres' }, 'isLength', 11, 11),
+      validate({ message: '11 chiffres/lettres' }, 'len', 11, 11),
       validate({ message: 'non vide' }, 'notEmpty')
     ]
   },

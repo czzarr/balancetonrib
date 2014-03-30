@@ -25,5 +25,5 @@ module.exports.connect = function (cb) {
   mongoose.set('debug', !config.isProd)
   mongoose.connect(config.mongo)
   mongoose.connection.on('error', cb)
-  //mongoose.connection.on('open', function () { })
+  mongoose.connection.on('open', cb)
 }
