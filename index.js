@@ -1,3 +1,4 @@
+var _ = require('lodash')
 var async = require('async')
 var auth = require('./lib/auth')
 var config = require('./config')
@@ -10,15 +11,22 @@ var express = require('express')
 var favicon = require('static-favicon')
 var flash = require('express-flash')
 var http = require('http')
+var level = require('level')
 var model = require('./model')
 var MongoStore = require('connect-mongo')(express)
 var logger = require('morgan')
 var path = require('path')
 var passport = require('passport')
+var request = require('request')
 var secrets = require('./secrets')
 var session = require('express-session')
+var sub = require('level-sublevel')
+var ttl = require('level-ttl')
 var url = require('url')
 
+var friendsdb = level('friends.db', { valueEncoding: 'json' })
+friendsdb = sub(friendsdb)
+friendsdb = ttl(friendsdb)
 
 function addHeaders(req, res, next) {
   var extname = path.extname(url.parse(req.url).pathname)
@@ -77,11 +85,63 @@ app.use(passport.session())
 passport.serializeUser(auth.serializeUser)
 passport.deserializeUser(auth.deserializeUser)
 passport.use(auth.facebookStrategy)
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
-  res.locals._csrf = req.csrfToken();
-  next();
-});
+app.use(function (req, res, next) {
+  res.locals.user = req.user
+  res.locals._csrf = req.csrfToken()
+  next()
+})
+app.use(function (req, res, next) {
+  if (!req.user) return next()
+  friendsdb.get(req.user.facebook, function (err, value) {
+    if (err) {
+      if (err.notFound) {
+        var accessToken = _.findWhere(req.user.tokens, { kind: 'facebook' }).accessToken
+        //var endpoint = 'https://graph.facebook.com/me/friends'
+        //var params = '?fields=name,picture' + '&access_token=' + accessToken
+        var endpoint = 'https://graph.facebook.com/fql'
+        var params = '?q=select mutual_friend_count,uid,name from user where uid in\
+(select uid2 from friend where uid1=me()) order by mutual_friend_count desc\
+        &access_token=' + accessToken
+        var query = endpoint + params
+        var _res = res
+        request.get(query, function (err, res, body) {
+          if (err) return next(err)
+            console.log(body);
+          var body = JSON.parse(body)
+          var friends = body.data
+          function savePagedResults (paging) {
+            if (paging && paging.next) {
+              debug('new page')
+              request.get(paging.next, function (err, res, body) {
+                var body = JSON.parse(body)
+                friends.concat(body.data)
+                savePagedResults(body.paging)
+              })
+            } else {
+              // store friends object for 1 hour
+              debug(req.user.facebook, friends.length, 'boo')
+              friendsdb.put(req.user.facebook, friends, { ttl: 1000 * 60 * 60 }, function (err) {
+                if (err) return next(err)
+                _res.locals.friends = friends
+                next()
+              })
+            }
+          }
+          savePagedResults(body.paging)
+        })
+      } else {
+        return next(err)
+      }
+    } else {
+      res.locals.friends = value
+      next()
+    }
+  })
+})
+app.use(function (req, res, next) {
+  debug('trop damis', res.locals.friends.length)
+  next()
+})
 
 require('./routes')(app)
 

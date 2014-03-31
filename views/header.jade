@@ -4,3 +4,7 @@ if (!user)
 else
   h2 logged in as #{user.profile.name}
   img(src='#{user.profile.picture}')
+  p Choose a friend
+  select#friends
+    each friend in friends
+      option #{friend.name}
