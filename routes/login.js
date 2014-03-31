@@ -2,17 +2,6 @@ var auth = require('../lib/auth')
 var passport = require('passport')
 
 module.exports = function (app) {
-  app.get('/login', auth.returnTo, function (req, res) {
-    if (req.user) {
-      res.redirect(req.session.returnTo || '/')
-    } else {
-      res.render('login', {
-        title: 'Login',
-        errors: req.flash('error')
-      })
-    }
-  })
-
   app.get(
     '/login/facebook',
     passport.authenticate('facebook', { scope: ['email'] })
