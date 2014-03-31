@@ -1,0 +1,6 @@
+h1 Balance ton RIB gros!
+if (!user)
+  a(href='/login/facebook') Se connecter avec Facebook
+else
+  h2 logged in as #{user.profile.name}
+  img(src='#{user.profile.picture}')

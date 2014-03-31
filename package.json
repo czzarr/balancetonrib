@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "browserify --debug index.js -o bundle.js",
-    "watch": "watchify -d index.js -o bundle.js"
+    "watch": "watchify -d index.js -o bundle.js",
+    "debug": "DEBUG=auth,site nodemon index.js"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
   "license": "MIT",
