@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "browserify --debug index.js -o bundle.js",
-    "watch": "watchify -d index.js -o bundle.js",
+    "bundle": "browserify --debug client/main.js -o out/bundle.js",
+    "watch": "watchify client/main.js -o out/bundle.js -dv",
     "debug": "DEBUG=auth,site nodemon index.js"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
