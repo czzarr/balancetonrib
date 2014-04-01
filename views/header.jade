@@ -7,5 +7,6 @@ else
   p Choose a friend
   select#friends(placeholder='Sélectionner un(e) ami(e)...')
     each friend in friends
-      option(value='#{friend.uid}') #{friend.name}
+      option
+        option(value='#{friend.uid}', data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
   script(src='bundle.js')
