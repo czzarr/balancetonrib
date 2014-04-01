@@ -1,0 +1,20 @@
+{
+  "name": "balancetonrib",
+  "main": "index.js",
+  "version": "0.0.0",
+  "authors": [
+    "Stanislas Marion <stanislas.marion@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "selectize": "~0.9.0"
+  }
+}
