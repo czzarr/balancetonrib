@@ -5,6 +5,7 @@ else
   h2 logged in as #{user.profile.name}
   img(src='#{user.profile.picture}')
   p Choose a friend
-  select#friends
+  select#friends(placeholder='Sélectionner un(e) ami(e)...')
     each friend in friends
-      option #{friend.name}
+      option(value='#{friend.uid}') #{friend.name}
+  script(src='bundle.js')
