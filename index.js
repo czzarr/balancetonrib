@@ -99,7 +99,7 @@ app.use(function (req, res, next) {
         //var endpoint = 'https://graph.facebook.com/me/friends'
         //var params = '?fields=name,picture' + '&access_token=' + accessToken
         var endpoint = 'https://graph.facebook.com/fql'
-        var params = '?q=select mutual_friend_count,uid,name from user where uid in\
+        var params = '?q=select mutual_friend_count,uid,name,pic_square from user where uid in\
 (select uid2 from friend where uid1=me()) order by mutual_friend_count desc\
         &access_token=' + accessToken
         var query = endpoint + params
