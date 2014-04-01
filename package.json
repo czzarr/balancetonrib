@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "browserify --debug client/main.js -o out/bundle.js",
+    "build": "browserify --debug client/main.js -o out/bundle.js",
     "watch": "watchify client/main.js -o out/bundle.js -dv",
     "debug": "DEBUG=auth,site nodemon index.js"
   },
@@ -44,7 +44,7 @@
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
-    "selectize": "./lib/selectize/dist/js/standalone/selectize.js"
+    "selectize": "./bower_components/selectize/dist/js/standalone/selectize.js"
   },
   "browserify-shim": {
     "jquery": "jQuery",
