@@ -2,8 +2,9 @@ var model = require('./')
 var mongoose = require('mongoose')
 var plugin = require('./plugin')
 var validate = require('mongoose-validator').validate
+var checksum = require('../lib/rib').checksum
 
-var RIB = mongoose.Schema({
+var Rib = mongoose.Schema({
   bank: {
     type: String,
     validate: [
@@ -12,7 +13,7 @@ var RIB = mongoose.Schema({
       validate({ message: 'non vide' }, 'notEmpty')
     ]
   },
-  indicator: {
+  counter: {
     type: String,
     validate: [
       validate({ message: '5 chiffres' }, 'len', 5, 5),
@@ -33,7 +34,15 @@ var RIB = mongoose.Schema({
     min: 1,
     max: 97
   },
-  user: {
+  canonical: {
+    type: String,
+    index: true,
+    validate: [
+      validate({ message: '23 chiffres/lettres' }, 'len', 23, 23),
+      validate({ message: 'non vide' }, 'notEmpty')
+    ]
+  },
+  _user: {
     type: String,
     ref: 'User',
     index: true,
@@ -41,7 +50,12 @@ var RIB = mongoose.Schema({
   }
 })
 
-RIB.plugin(plugin.modifyDate)
-RIB.plugin(plugin.createDate)
+Rib.pre('save', function (next) {
+  this.accountNumber.toUpperCase()
+  checksum(this, next)
+})
 
-module.exports = RIB
+Rib.plugin(plugin.modifyDate)
+Rib.plugin(plugin.createDate)
+
+module.exports = Rib

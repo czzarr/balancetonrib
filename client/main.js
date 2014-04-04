@@ -10,3 +10,34 @@ $('#friends').selectize({
     }
   }
 })
+
+$('#add-rib').click(function () {
+  $('#rib-form').show()
+})
+
+$('#cancel-rib').click(function () {
+  $('#rib-form').hide()
+})
+
+$('#rib-form').submit(function (event) {
+  event.preventDefault()
+  var data = {}
+  data.bank = $('#bank').val()
+  data.counter = $('#counter').val()
+  data.accountNumber = $('#accountNumber').val()
+  data.key = $('#key').val()
+  $.ajax({
+    url: '/ribs', 
+    type: 'POST',
+    data: data,
+    dataType: 'json'
+  })
+   .done(function () {
+     $('#rib-form').hide()
+     $('#success').show()
+   })
+   .fail(function () {
+     $('#error').show()
+   })
+})
+

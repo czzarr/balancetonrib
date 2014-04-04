@@ -18,7 +18,7 @@ module.exports = function (app) {
   //require('./autocomplete')(app)
 
   //// Dynamic
-  //require('./rib')(app)
+  require('./rib')(app)
   //require('./user')(app)
 
   //// Error pages

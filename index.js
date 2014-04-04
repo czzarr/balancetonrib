@@ -83,7 +83,7 @@ app.use(session({
     auto_reconnect: true
   })
 }))
-app.use(csrf())
+//app.use(csrf())
 app.use(passport.initialize())
 app.use(passport.session())
 passport.serializeUser(auth.serializeUser)
@@ -91,7 +91,7 @@ passport.deserializeUser(auth.deserializeUser)
 passport.use(auth.facebookStrategy)
 app.use(function (req, res, next) {
   res.locals.user = req.user
-  res.locals._csrf = req.csrfToken()
+  //res.locals._csrf = req.csrfToken()
   next()
 })
 app.use(function (req, res, next) {
