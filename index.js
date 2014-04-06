@@ -10,26 +10,81 @@ var debug = require('debug')('site')
 var express = require('express')
 var favicon = require('static-favicon')
 var flash = require('express-flash')
+var friendsdb = require('./lib/friends')
 var http = require('http')
-var level = require('level')
 var logger = require('morgan')
 var model = require('./model')
 var MongoStore = require('connect-mongo')(express)
 var passport = require('passport')
 var path = require('path')
 var request = require('request')
+var run = require('./run')
 var secrets = require('./secrets')
 var session = require('express-session')
 var static = require('serve-static')
-var sub = require('level-sublevel')
-var ttl = require('level-ttl')
 var url = require('url')
 
-var friendsdb = level('friends.db', { valueEncoding: 'json' })
-friendsdb = sub(friendsdb)
-friendsdb = ttl(friendsdb)
+function Site (opts, cb) {
+  var self = this
+  //if (opts) util.extend(self, opts)
 
-function addHeaders(req, res, next) {
+  /** @type {number} port */
+  self.port || (self.port = config.ports.site)
+
+  self.start(cb)
+}
+
+Site.prototype.start = function (done) {
+  var self = this
+  done || (done = function () {})
+
+  self.app = express()
+  self.server = http.createServer(self.app)
+
+  // Trust the X-Forwarded-* headers from nginx
+  self.app.enable('trust proxy')
+
+  // Templating
+  self.app.set('views', path.join(__dirname, 'views'))
+  self.app.set('view engine', 'jade')
+
+  // Logging
+  self.app.use(logger('dev'))
+
+  // Headers
+  self.app.use(self.addHeaders)
+  self.app.use(compress())
+
+  // Static
+  self.serveStatic()
+
+  // Sessions and auth
+  self.setupSessions()
+
+  // Template locals
+  self.app.use(self.addTemplateLocals)
+  self.app.use(self.fetchFriends)
+
+  // Errors propagate through flash
+  self.app.use(flash())
+
+  // Routing
+  require('./routes')(self.app)
+
+  async.series([
+    model.connect,
+    function (cb) {
+      self.server.listen(self.port, cb)
+    }
+  ], function (err) {
+    if (!err) {
+      debug('BalanceTonRib listening on ' + self.port)
+    }
+    done(err)
+  })
+}
+
+Site.prototype.addHeaders = function (req, res, next) {
   var extname = path.extname(url.parse(req.url).pathname)
 
   // Add cross-domain header for fonts, required by spec, Firefox, and IE.
@@ -55,53 +110,17 @@ function addHeaders(req, res, next) {
   next()
 }
 
-var app = express()
-
-app.enable('trust proxy')
-
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
-
-app.use(addHeaders)
-
-app.use(logger('dev'))
-app.use(compress())
-app.use(flash())
-var out = static(path.join(__dirname, '/out'))
-var bowerComponents = static(path.join(__dirname, '/bower_components'))
-app.use(favicon())
-app.use(out)
-app.use(bowerComponents)
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
-app.use(cookieParser())
-app.use(session({
-  secret: secrets.session,
-  proxy: true,
-  store: new MongoStore({
-    url: config.mongo,
-    auto_reconnect: true
-  })
-}))
-//app.use(csrf())
-app.use(passport.initialize())
-app.use(passport.session())
-passport.serializeUser(auth.serializeUser)
-passport.deserializeUser(auth.deserializeUser)
-passport.use(auth.facebookStrategy)
-app.use(function (req, res, next) {
-  res.locals.user = req.user
-  //res.locals._csrf = req.csrfToken()
-  next()
-})
-app.use(function (req, res, next) {
+/**
+ * Fetch Facebook friends of the user so that they're available for search on every page
+ * Try in LevelDB cache first, query Facebook if miss.
+ *
+ */
+Site.prototype.fetchFriends = function (req, res, next) {
   if (!req.user) return next()
   friendsdb.get(req.user.facebook, function (err, value) {
     if (err) {
       if (err.notFound) {
         var accessToken = _.findWhere(req.user.tokens, { kind: 'facebook' }).accessToken
-        //var endpoint = 'https://graph.facebook.com/me/friends'
-        //var params = '?fields=name,picture' + '&access_token=' + accessToken
         var endpoint = 'https://graph.facebook.com/fql'
         var params = '?q=select mutual_friend_count,uid,name,pic_square from user where uid in\
 (select uid2 from friend where uid1=me()) order by mutual_friend_count desc\
@@ -140,27 +159,50 @@ app.use(function (req, res, next) {
       next()
     }
   })
-})
-app.use(function (req, res, next) {
-  debug('trop damis', res.locals.friends.length)
+}
+
+/**
+ * Make certain variables available to templates on this request.
+ */
+Site.prototype.addTemplateLocals = function (req, res, next) {
+  res.locals.user = req.user
+  //res.locals._csrf = req.csrfToken()
   next()
-})
+}
 
-require('./routes')(app)
+Site.prototype.serveStatic = function () {
+  var self = this
 
-var server = http.createServer(app)
+  var out = static(path.join(__dirname, '/out'))
+  var bowerComponents = static(path.join(__dirname, '/bower_components'))
+  self.app.use(favicon())
+  self.app.use(out)
+  self.app.use(bowerComponents)
+}
 
-var done = function () {}
+Site.prototype.setupSessions = function () {
+  var self = this
 
-async.series([
-  model.connect,
-  function (cb) {
-    server.listen(config.ports.site, cb)
-  }
-], function (err) {
-  if (!err) {
-    debug('BalanceTonRib listening on ' + config.ports.site)
-    //if (!config.isProd) util.triggerLiveReload()
-  }
-  done(err)
-})
+  // Sessions
+  self.app.use(bodyParser.json())
+  self.app.use(bodyParser.urlencoded())
+  self.app.use(cookieParser())
+  self.app.use(session({
+    secret: secrets.session,
+    proxy: true,
+    store: new MongoStore({
+      url: config.mongo,
+      auto_reconnect: true
+    })
+  }))
+  self.app.use(csrf())
+
+  // Passport
+  self.app.use(passport.initialize())
+  self.app.use(passport.session())
+  passport.serializeUser(auth.serializeUser)
+  passport.deserializeUser(auth.deserializeUser)
+  passport.use(auth.facebookStrategy)
+}
+
+if (!module.parent) run(Site)
