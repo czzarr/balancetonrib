@@ -3,7 +3,6 @@ if (!user)
   a(href='/login/facebook') Se connecter avec Facebook
 else
   h2 logged in as #{user.profile.name}
-  img(src='#{user.profile.picture}')
   p Choose a friend
   select#friends(placeholder='Sélectionner un(e) ami(e)...')
     each friend in friends

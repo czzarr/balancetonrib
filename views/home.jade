@@ -1,24 +1,24 @@
 extends base
 
-block body
+block content
   if(rib)
     Votre rib: #{rib}
   a(href='#',id='add-rib') Ajouter un RIB
 
-  form#rib-form
-    //-input(type='hidden', name='_csrf', value=csrf)
+  form#rib-form(method='POST', action='/ribs')
+    input(type='hidden', name='_csrf', value=csrf)
     div
       label Code banque (5 chiffres)
-      input(type='text', id='bank')
+      input(type='text', id='bank', name="bank")
     div
       label Code guichet (5 chiffres)
-      input(type='text', id='counter')
+      input(type='text', id='counter', name="counter")
     div
       label Numéro de compte (11 chiffres/lettres)
-      input(type='text', id='accountNumber')
+      input(type='text', id='accountNumber', name="accountNumber")
     div
       label Clé RIB (2 chiffres)
-      input(type='text', id='key')
+      input(type='text', id='key', name="key")
     div
       input(type='submit', value='Valider')
       input(type='button', value='Annuler')

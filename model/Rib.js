@@ -36,9 +36,10 @@ var Rib = mongoose.Schema({
   },
   canonical: {
     type: String,
-    index: true,
+    unique: true,
     validate: [
       validate({ message: '23 chiffres/lettres' }, 'len', 23, 23),
+      { validator: checksum, msg: 'RIB invalide, veuillez vérifier.' },
       validate({ message: 'non vide' }, 'notEmpty')
     ]
   },
@@ -51,7 +52,6 @@ var Rib = mongoose.Schema({
 })
 
 Rib.pre('save', function (next) {
-  this.accountNumber.toUpperCase()
   checksum(this, next)
 })
 
