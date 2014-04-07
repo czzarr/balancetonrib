@@ -1,7 +1,9 @@
 module.exports = function (app) {
   app.get('/', function (req, res, next) {
-    res.render('home', {
-      title: 'Home'
-    })
+    var locals = {
+      title: 'Accueil',
+      errors: req.flash('error')
+    }
+    res.render('home', locals)
   })
 }

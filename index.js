@@ -9,7 +9,7 @@ var csrf = require('csurf')
 var debug = require('debug')('site')
 var express = require('express')
 var favicon = require('static-favicon')
-var flash = require('express-flash')
+var flash = require('connect-flash')
 var friendsdb = require('./lib/friends')
 var http = require('http')
 var logger = require('morgan')
@@ -67,6 +67,11 @@ Site.prototype.start = function (done) {
 
   // Errors propagate through flash
   self.app.use(flash())
+  self.app.use(function (req, res, next) {
+    //debug('messages', req.flash())
+    //debug('error', res.locals.req.flash('error'))
+    next()
+  })
 
   // Routing
   require('./routes')(self.app)
@@ -166,6 +171,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
  */
 Site.prototype.addTemplateLocals = function (req, res, next) {
   res.locals.user = req.user
+  res.locals.req = req
   //res.locals._csrf = req.csrfToken()
   next()
 }
@@ -195,7 +201,7 @@ Site.prototype.setupSessions = function () {
       auto_reconnect: true
     })
   }))
-  self.app.use(csrf())
+  //self.app.use(csrf())
 
   // Passport
   self.app.use(passport.initialize())

@@ -1,3 +1,4 @@
+var _ = require('lodash')
 var auth = require('../lib/auth')
 var model = require('../model')
 

@@ -41,7 +41,8 @@
     "level-ttl": "^0.5.0",
     "level": "^0.18.0",
     "level-sublevel": "^5.2.0",
-    "http-status-codes": "^1.0.2"
+    "http-status-codes": "^1.0.2",
+    "connect-flash": "^0.1.1"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
