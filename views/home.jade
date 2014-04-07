@@ -3,6 +3,8 @@ extends base
 block content
   if(rib)
     Votre rib: #{rib}
+    a(href='/ribs/delete/#{rib}' id='add-rib') Supprimer ce RIB
+
   a(href='#',id='add-rib') Ajouter un RIB
 
   form#rib-form(method='POST', action='/ribs')
