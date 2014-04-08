@@ -1,0 +1,38 @@
+nav.navbar.navbar-default.navbar-static-top(role='navigation')
+  .container
+    //
+       Brand and toggle get grouped for better mobile display 
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#') Balance ton RIB
+    //
+       Collect the nav links, forms, and other content for toggling 
+    .collapse.navbar-collapse
+      if (user)
+        form.navbar-form.navbar-left(role='search')
+          .form-search.search-only
+            input.form-control(type='text', placeholder='Cherchez un(e) ami(e)...')
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              img.profile-image(src='#{user.profile.picture}')
+              | #{user.profile.name}&nbsp;
+              i.caret
+            ul.dropdown-menu
+              li: a(href='/account') Mon compte
+              li.divider
+              li: a(href='/logout') Logout
+      else
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='/login/facebook') Login avec Facebook
+
+    //
+       /.navbar-collapse 
+  //
+     /.container-fluid 
+

@@ -1,5 +1,6 @@
 var jquery = require('jquery')
 require('selectize')
+require('bootstrap')
 
 $('#friends').selectize({
   create: false,

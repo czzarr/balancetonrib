@@ -1,0 +1,32 @@
+doctype html
+html(lang='fr')
+
+  head
+
+    meta(charset='utf-8')
+
+    if (locals.title)
+      - pageTitle = title + ' | Balance ton RIB'
+    else
+      - pageTitle = 'Balance ton RIB'
+    title= pageTitle
+
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='bootflat/bootstrap/bootstrap.min.css')
+    link(rel='stylesheet', href='bootflat/css/font-awesome.min.css')
+    link(rel='stylesheet', href='bootflat/css/bootflat.css')
+    link(rel='stylesheet', href='selectize/dist/css/selectize.css')
+
+  body
+
+    #flash
+      //-if (locals.errors.length)
+        //-.error
+          //-each msg in errors
+            //-div= msg
+
+    block body
+
+    script(src='bundle.js')

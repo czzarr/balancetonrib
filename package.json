@@ -46,12 +46,18 @@
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
-    "selectize": "./bower_components/selectize/dist/js/standalone/selectize.js"
+    "selectize": "./bower_components/selectize/dist/js/standalone/selectize.js",
+    "bootstrap": "./bower_components/bootflat/js/bootstrap.min.js"
   },
   "browserify-shim": {
     "jquery": "jQuery",
     "selectize": {
       "exports": "Selectize",
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "bootstrap": {
       "depends": [
         "jquery:jQuery"
       ]
