@@ -12,10 +12,18 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
     //
        Collect the nav links, forms, and other content for toggling 
     .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='/ribs/add') Ajouter un RIB
+
       if (user)
         form.navbar-form.navbar-left(role='search')
           .form-search.search-only
-            input.form-control(type='text', placeholder='Cherchez un(e) ami(e)...')
+            select#friends.form-control(placeholder='Sélectionner un(e) ami(e)...')
+              each friend in friends
+                option
+                  option(value='#{friend.uid}', data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
+            //-input.form-control(type='text', placeholder='Cherchez un(e) ami(e)...')
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
