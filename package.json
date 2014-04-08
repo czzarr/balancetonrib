@@ -6,8 +6,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify --debug client/main.js -o out/bundle.js",
-    "watch": "watchify client/main.js -o out/bundle.js -dv",
+    "build-js": "browserify client/main.js -o out/bundle.js -dv ",
+    "build-css": "stylus -u nib stylus/main.styl -o out/ --include-css -c",
+    "build": "npm run build-js && npm run build-css",
+    "watch-js": "watchify client/main.js -o out/bundle.js -dv",
+    "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
+    "watch": "npm run watch-js && npm run watch-css",
     "debug": "DEBUG=auth,site nodemon index.js"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",

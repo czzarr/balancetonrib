@@ -23,7 +23,6 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
               each friend in friends
                 option
                   option(value='#{friend.uid}', data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
-            //-input.form-control(type='text', placeholder='Cherchez un(e) ami(e)...')
         ul.nav.navbar-nav.navbar-right
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
@@ -37,7 +36,11 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
       else
         ul.nav.navbar-nav.navbar-right
           li
-            a(href='/login/facebook') Login avec Facebook
+            form(action='/login/facebook')
+              button.btn.btn-social.btn-facebook.navbar-btn
+                i.fa.fa-facebook
+                | Login avec Facebook
+
 
     //
        /.navbar-collapse 
