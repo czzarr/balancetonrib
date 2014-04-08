@@ -1,3 +1,8 @@
+.navbar-default .navbar-header .navbar-brand {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #50c1e9;
+}
 .navbar-custom {
   background-color: #f2f9fa;
 }
@@ -13,8 +18,8 @@
   width: 400px;
   -webkit-border-radius: 0;
   border-radius: 0;
-  border: none;
   padding: 0;
+  background-color: #fff;
 }
 .search-only .selectize-control.form-control .selectize-input {
   -webkit-border-radius: 0;
@@ -23,6 +28,8 @@
   -webkit-box-shadow: none;
   box-shadow: none;
   padding-left: 40px;
+  cursor: default;
+  min-height: 10px;
 }
 .search-only .selectize-control.form-control .selectize-dropdown {
   -webkit-border-radius: 0;
@@ -33,4 +40,8 @@
 }
 .search-only .selectize-control.form-control .selectize-dropdown-content {
   margin-left: -40px;
+}
+.search-only .selectize-control.form-control .selectize-dropdown-content .selectize-dropdown-img {
+  width: 30px;
+  height: 30px;
 }

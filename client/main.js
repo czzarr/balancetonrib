@@ -7,7 +7,7 @@ $('#friends').selectize({
   placeholder: 'Sélectionner un(e) ami(e)...',
   render: {
     option: function (item, escape) {
-      return '<div><img src="' + escape(item.pic) + '"><span style="margin-left: 5px;">' + escape(item.text) + '</div>'
+      return '<div><img class="selectize-dropdown-img" src="' + escape(item.pic) + '"><span style="margin-left: 5px;">' + escape(item.text) + '</div>'
     }
   }
 })
