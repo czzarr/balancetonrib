@@ -1,13 +1,8 @@
+.navbar.navbar-default {
+  margin-bottom: 0;
+}
 .navbar-default .navbar-header .navbar-brand {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  color: #50c1e9;
-}
-.navbar-custom {
-  background-color: #f2f9fa;
-}
-.navbar-custom .nav li a {
-  color: #50c1e9;
 }
 .navbar-nav .profile-image {
   width: 30px;
@@ -44,4 +39,19 @@
 .search-only .selectize-control.form-control .selectize-dropdown-content .selectize-dropdown-img {
   width: 30px;
   height: 30px;
+}
+.hero {
+  background-color: #3da8e3;
+  padding-bottom: 80px;
+  padding-top: 80px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.hero h1,
+.hero h2 {
+  font-weight: 300;
+}
+.hero h1 .strong,
+.hero h2 .strong {
+  font-weight: 700;
 }

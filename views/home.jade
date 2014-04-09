@@ -2,34 +2,43 @@ extends layouts/main
 
 block content
   if (user)
-    if (rib)
-      p Votre rib: #{rib}
-      a(href='/ribs/delete/#{rib}' id='add-rib') Supprimer ce RIB
-    else
-      h1 Ajouter un RIB
+    main.app
+      .container
+        if (rib)
+          p Votre rib: #{rib}
+          a(href='/ribs/delete/#{rib}' id='add-rib') Supprimer ce RIB
+        else
+          h1 Ajouter un RIB
 
-      form#rib-form(method='POST', action='/ribs')
-        input(type='hidden', name='_csrf', value=csrf)
-        div
-          label Code banque (5 chiffres)
-          input(type='text', id='bank', name="bank")
-        div
-          label Code guichet (5 chiffres)
-          input(type='text', id='counter', name="counter")
-        div
-          label Numéro de compte (11 chiffres/lettres)
-          input(type='text', id='accountNumber', name="accountNumber")
-        div
-          label Clé RIB (2 chiffres)
-          input(type='text', id='key', name="key")
-        div
-          input(type='submit', value='Valider')
-          input(type='button', value='Annuler')
+          form#rib-form(method='POST', action='/ribs')
+            input(type='hidden', name='_csrf', value=csrf)
+            div
+              label Code banque (5 chiffres)
+              input(type='text', id='bank', name="bank")
+            div
+              label Code guichet (5 chiffres)
+              input(type='text', id='counter', name="counter")
+            div
+              label Numéro de compte (11 chiffres/lettres)
+              input(type='text', id='accountNumber', name="accountNumber")
+            div
+              label Clé RIB (2 chiffres)
+              input(type='text', id='key', name="key")
+            div
+              input(type='submit', value='Valider')
+              input(type='button', value='Annuler')
   else
-    p.lead.
-      Vous en avez marre d'envoyer sans cesse votre RIB par email?
-      Ou de demander les RIBs de vos amis?
-    p. 
-      Inscrivez-vous (en 10 secondes chrono), 
-      et accédez à notre annuaire de RIBs
+    main.hero
+      .container
+        h1.
+          <span class="strong">Arrêtez</span> d'échanger <span class="strong">sans cesse</span> des <span class="strong">RIBs</span> par email !
+        h2. 
+          Inscrivez-vous <span class="strong">en 10 secondes</span>, 
+          et <span class="strong">accédez</span> facilement aux RIBs de vos amis.
+
+        br
+        form(action='/login/facebook')
+          button.btn.btn-lg.btn-social.btn-facebook.navbar-btn
+            i.fa.fa-facebook
+            | Login avec Facebook
 
