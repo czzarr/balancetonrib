@@ -1,0 +1,13 @@
+extends layouts/main
+
+block content
+  main
+    .container
+      img(src=friend.profile.picture, alt=friend.profile.name)
+      p= friend.profile.name
+      each rib in ribs
+        .rib.
+          Code Banque #{rib.bank}
+          Code Guichet #{rib.bank}
+          Numéro de Compte #{rib.accountNumber}
+          Clé RIB #{ribkey}
