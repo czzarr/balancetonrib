@@ -3,8 +3,8 @@ extends layouts/main
 block content
   main
     .container
-      img(src=friend.profile.picture, alt=friend.profile.name)
-      p= friend.profile.name
+      img(src=friend.pic_big, alt=friend.name)
+      p= friend.name
       each rib in ribs
         .rib.
           Code Banque #{rib.bank}

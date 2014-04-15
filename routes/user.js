@@ -1,27 +1,23 @@
+var _ = require('lodash')
 var async = require('async')
 var model = require('../model')
 
 module.exports = function (app) {
-  app.get('/u/:userId', function (req, res, next) {
+  app.get('/u/:fbId', function (req, res, next) {
     async.auto({
-        friend: function (cb) {
-          model.User
-            .findOne({ facebook: req.params.userId })
-            .exec(cb)
-        },
-        ribs: ['friend', function (cb, r) {
+        ribs: function (cb) {
           model.Rib
-            .find({ _user: r.friend._id })
+            .find({ _user: req.params.fbId })
             .exec(cb)
-        }]
+        }
       }, function (err, r) {
         if (err) return next(err)
-        if (!r.friend) return next()
 
+        var friend = res.locals.friends[req.params.fbId]
         res.render('user', {
           ribs: r.ribs,
-          title: r.friend.profile.name,
-          friend: r.friend
+          title: friend.name,
+          friend: friend
         })
     })
   })
