@@ -1,6 +1,6 @@
 {
   "name": "balancetonrib",
-  "version": "0.0.0",
+  "version": "0.0.0-2",
   "description": "biatch",
   "repository": "git",
   "main": "index.js",
@@ -13,8 +13,9 @@
     "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
     "watch": "npm run watch-js && npm run watch-css",
     "debug": "DEBUG=auth,site nodemon index.js",
-    "start": "npm run build && node index.js",
-    "postdeploy": "bower install"
+    "start": "index.js",
+    "predeploy": "npm run build",
+    "postinstall": "bower install"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
   "license": "MIT",
@@ -47,7 +48,8 @@
     "passport-facebook": "^1.0.3",
     "request": "^2.34.0",
     "static-favicon": "^1.0.2",
-    "validator": "^3.5.1"
+    "validator": "^3.5.1",
+    "serve-static": "1.0.x"
   },
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
