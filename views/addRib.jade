@@ -1,9 +1,9 @@
 extends layouts/main
 
 block content
-  h1.text-center Ajouter un RIB
 
   form#form-add-rib(role='form', method='POST', action='/ribs')
+    h1 Ajouter un RIB
     input(type='hidden', name='_csrf', value=csrf)
     div.form-group
       label(for='bank') Code banque (5 chiffres)
@@ -24,3 +24,6 @@ block content
     div
       button.btn.btn-primary.btn-block(type='submit') Valider
 
+  .text-center
+    small.
+      Par mesure de sécurité, votre RIB ne sera accessible qu'à vos amis Facebook. Un RIB est un document public, le pire qui puisse vous arriver est de recevoir de l'argent par erreur.

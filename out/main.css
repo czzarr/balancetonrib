@@ -1,3 +1,7 @@
+body {
+  background-color: #eee;
+  color: #111;
+}
 main {
   padding-top: 20px;
 }
@@ -69,8 +73,6 @@ main {
 .user img {
   -webkit-border-radius: 100px;
   border-radius: 100px;
-  -webkit-box-shadow: 0px 1px 10px rgba(0,0,0,0.35);
-  box-shadow: 0px 1px 10px rgba(0,0,0,0.35);
   height: 200px;
   margin-bottom: 0.9em;
   width: 200px;
@@ -78,4 +80,7 @@ main {
 #form-add-rib {
   max-width: 330px;
   margin: 40px auto;
+}
+#form-add-rib h1 {
+  margin-bottom: 30px;
 }
