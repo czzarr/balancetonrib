@@ -1,29 +1,5 @@
-extends layouts/main
+extends layouts/landing
 
 block content
-  if (user)
-    main.app
-      .container
-        if (rib)
-          p Votre rib: #{rib}
-          a(href='/ribs/delete/#{rib}' id='add-rib') Supprimer ce RIB
-        else
-          h1 Ajouter un RIB
-
-          form#rib-form(method='POST', action='/ribs')
-            input(type='hidden', name='_csrf', value=csrf)
-            div
-              label Code banque (5 chiffres)
-              input(type='text', id='bank', name="bank")
-            div
-              label Code guichet (5 chiffres)
-              input(type='text', id='counter', name="counter")
-            div
-              label Numéro de compte (11 chiffres/lettres)
-              input(type='text', id='accountNumber', name="accountNumber")
-            div
-              label Clé RIB (2 chiffres)
-              input(type='text', id='key', name="key")
-            div
-              input(type='submit', value='Valider')
-              input(type='button', value='Annuler')
+  h2 Entrez le nom d'un(e) ami(e)
+  img.white-arrow.hidden-xs.hidden-sm(src='/whiteArrow.png')

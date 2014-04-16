@@ -57,6 +57,11 @@ main {
 .hero h2 .strong {
   font-weight: 700;
 }
+.hero .white-arrow {
+  position: relative;
+  top: -137px;
+  left: 407px;
+}
 .user {
   text-align: center;
 }

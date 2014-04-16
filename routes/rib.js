@@ -27,6 +27,12 @@ module.exports = function (app) {
     })
   })
 
+  app.get('/ribs/add/', auth.ensureAuth, function (req, res, next) {
+    res.render('addRib', {
+      title: 'Ajouter un RIB'
+    })
+  })
+
   app.get('/ribs/delete/:ribId', auth.ensureAuth, function (req, res, next) {
     var ribId = req.params.ribId
     
