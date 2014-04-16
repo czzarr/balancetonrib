@@ -8,39 +8,39 @@ var Rib = mongoose.Schema({
   bank: {
     type: String,
     validate: [
-      validate({ message: '5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'des chiffres' }, 'isNumeric'),
-      validate({ message: 'non vide' }, 'notEmpty')
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
     ]
   },
   counter: {
     type: String,
     validate: [
-      validate({ message: '5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'des chiffres' }, 'isNumeric'),
-      validate({ message: 'non vide' }, 'notEmpty')
+      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'isNumeric'),
+      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'notEmpty')
     ]
   },
   accountNumber: {
     type: String,
     validate: [
-      validate({ message: '11 chiffres/lettres' }, 'len', 11, 11),
-      validate({ message: 'non vide' }, 'notEmpty')
+      validate({ message: 'Le numéro de compte doit être composé de 11 chiffres/lettres' }, 'len', 11, 11),
+      validate({ message: 'Le numéro de compte doit être composé de 11 chiffres/lettres' }, 'notEmpty')
     ]
   },
   key: {
     type: Number,
-    required: true,
-    min: 1,
-    max: 97
+    validate: [
+      validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'notEmpty'),
+      validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'isNumeric'),
+      { validator: function (key) { return key > 1 && key < 97 }, msg: 'La clé doit être un nombre compris entre 1 et 97' }
+    ]
   },
   canonical: {
     type: String,
     unique: true,
     validate: [
-      validate({ message: '23 chiffres/lettres' }, 'len', 23, 23),
-      { validator: checksum, msg: 'RIB invalide, veuillez vérifier.' },
-      validate({ message: 'non vide' }, 'notEmpty')
+      { validator: checksum, msg: 'RIB invalide, veuillez vérifier.' }
     ]
   },
   _user: {
