@@ -13,8 +13,7 @@
     "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
     "watch": "npm run watch-js && npm run watch-css",
     "debug": "DEBUG=auth,site nodemon index.js",
-    "start": "index.js",
-    "predeploy": "npm run build"
+    "start": "index.js"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
   "license": "MIT",
