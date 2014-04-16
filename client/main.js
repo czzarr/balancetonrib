@@ -9,5 +9,8 @@ $('#friends').selectize({
     option: function (item, escape) {
       return '<div><img class="selectize-dropdown-img" src="' + escape(item.pic) + '"><span style="margin-left: 5px;">' + escape(item.text) + '</div>'
     }
+  },
+  onChange: function (value) {
+    window.location.href = '/u/' + value
   }
 })

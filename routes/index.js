@@ -10,7 +10,7 @@ module.exports = function (app) {
 
   // Dynamic
   require('./rib')(app)
-  //require('./user')(app)
+  require('./user')(app)
 
   // Error pages
   require('./error')(app)

@@ -127,7 +127,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
       if (err.notFound) {
         var accessToken = _.findWhere(req.user.tokens, { kind: 'facebook' }).accessToken
         var endpoint = 'https://graph.facebook.com/fql'
-        var params = '?q=select mutual_friend_count,uid,name,pic_square from user where uid in\
+        var params = '?q=select mutual_friend_count,uid,name,pic_square,pic_big from user where uid in\
 (select uid2 from friend where uid1=me()) order by mutual_friend_count desc\
         &access_token=' + accessToken
         var query = endpoint + params
@@ -146,10 +146,9 @@ Site.prototype.fetchFriends = function (req, res, next) {
               })
             } else {
               // store friends object for 1 hour
-              debug(req.user.facebook, friends.length, 'boo')
               friendsdb.put(req.user.facebook, friends, { ttl: 1000 * 60 * 60 }, function (err) {
                 if (err) return next(err)
-                _res.locals.friends = friends
+                _res.locals.friends = _.indexBy(friends, 'uid')
                 next()
               })
             }
@@ -160,7 +159,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
         return next(err)
       }
     } else {
-      res.locals.friends = value
+      res.locals.friends = _.indexBy(value, 'uid')
       next()
     }
   })
