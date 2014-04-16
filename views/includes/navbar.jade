@@ -22,16 +22,16 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
                 each friend in friends
                   option
                     option(value='#{friend.uid}', data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
-          ul.nav.navbar-nav.navbar-right
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
-                img.profile-image(src='#{user.profile.picture}')
-                | #{user.profile.name}&nbsp;
-                i.caret
-              ul.dropdown-menu
-                li: a(href='/u/#{user.facebook}') Mon compte
-                li.divider
-                li: a(href='/logout') Logout
+        ul.nav.navbar-nav.navbar-right
+          li.dropdown
+            a.dropdown-toggle(href='#', data-toggle='dropdown')
+              img.profile-image(src='#{user.profile.picture}')
+              | #{user.profile.name}&nbsp;
+              i.caret
+            ul.dropdown-menu
+              li: a(href='/u/#{user.facebook}') Mon compte
+              li.divider
+              li: a(href='/logout') Logout
     //
        /.navbar-collapse 
   //

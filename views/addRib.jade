@@ -1,23 +1,26 @@
-extends layout/main
+extends layouts/main
 
 block content
-  h1 Ajouter un RIB
+  h1.text-center Ajouter un RIB
 
-  form#rib-form(method='POST', action='/ribs')
+  form#form-add-rib(role='form', method='POST', action='/ribs')
     input(type='hidden', name='_csrf', value=csrf)
+    div.form-group
+      label(for='bank') Code banque (5 chiffres)
+      input.form-control(type='text', id='bank', name='bank',
+      maxlength='5')
+    div.form-group
+      label(for='counter') Code guichet (5 chiffres)
+      input.form-control(type='text', id='counter', name='counter',
+      maxlength='5')
+    div.form-group
+      label(for='accountNumber') Numéro de compte (11 chiffres/lettres)
+      input.form-control(type='text', id='accountNumber',
+      name='accountNumber', maxlength='11')
+    div.form-group
+      label(for='key') Clé RIB (2 chiffres)
+      input.form-control(type='text', id='key', name='key',
+      maxlength='2')
     div
-      label Code banque (5 chiffres)
-      input(type='text', id='bank', name="bank")
-    div
-      label Code guichet (5 chiffres)
-      input(type='text', id='counter', name="counter")
-    div
-      label Numéro de compte (11 chiffres/lettres)
-      input(type='text', id='accountNumber', name="accountNumber")
-    div
-      label Clé RIB (2 chiffres)
-      input(type='text', id='key', name="key")
-    div
-      input(type='submit', value='Valider')
-      input(type='button', value='Annuler')
+      button.btn.btn-primary.btn-block(type='submit') Valider
 

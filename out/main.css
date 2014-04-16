@@ -1,6 +1,5 @@
 main {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 20px;
 }
 .navbar.navbar-default {
   margin-bottom: 0;
@@ -45,6 +44,8 @@ main {
   height: 30px;
 }
 .hero {
+  padding-bottom: 80px;
+  padding-top: 60px;
   background-color: #3da8e3;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
@@ -73,4 +74,8 @@ main {
   height: 200px;
   margin-bottom: 0.9em;
   width: 200px;
+}
+#form-add-rib {
+  max-width: 330px;
+  margin: 40px auto;
 }

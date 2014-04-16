@@ -27,7 +27,7 @@ module.exports = function (app) {
     })
   })
 
-  app.get('/ribs/add/', auth.ensureAuth, function (req, res, next) {
+  app.get('/ribs/add', auth.ensureAuth, function (req, res, next) {
     res.render('addRib', {
       title: 'Ajouter un RIB'
     })
