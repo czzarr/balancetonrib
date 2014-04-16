@@ -24,6 +24,9 @@ module.exports = function (app) {
         if (!friend) return next()
 
         res.render('user', {
+          errors: req.flash('error'),
+          success: req.flash('success'),
+          info: req.flash('info'),
           ribs: r.ribs,
           title: friend.name,
           friend: friend,

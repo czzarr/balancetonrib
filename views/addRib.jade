@@ -7,20 +7,40 @@ block content
     input(type='hidden', name='_csrf', value=_csrf)
     div.form-group
       label(for='bank') Code banque (5 chiffres)
-      input.form-control(type='text', id='bank', name='bank',
-      maxlength='5')
+      input.form-control(
+        type='text', 
+        id='bank', 
+        name='bank',
+        value=(rib && rib.bank),
+        maxlength='5'
+      )
     div.form-group
       label(for='counter') Code guichet (5 chiffres)
-      input.form-control(type='text', id='counter', name='counter',
-      maxlength='5')
+      input.form-control(
+        type='text', 
+        id='counter', 
+        name='counter',
+        value=(rib && rib.counter),
+        maxlength='5'
+      )
     div.form-group
       label(for='accountNumber') Numéro de compte (11 chiffres/lettres)
-      input.form-control(type='text', id='accountNumber',
-      name='accountNumber', maxlength='11')
+      input.form-control(
+        type='text', 
+        id='accountNumber',
+        name='accountNumber', 
+        value=(rib && rib.accountNumber),
+        maxlength='11'
+      )
     div.form-group
       label(for='key') Clé RIB (2 chiffres)
-      input.form-control(type='text', id='key', name='key',
-      maxlength='2')
+      input.form-control(
+        type='text', 
+        id='key', 
+        name='key',
+        value=(rib && rib.key),
+        maxlength='2'
+      )
     div
       button.btn.btn-primary.btn-block(type='submit') Valider
 

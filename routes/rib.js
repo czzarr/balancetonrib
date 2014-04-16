@@ -17,7 +17,8 @@ module.exports = function (app) {
         _(err.errors).map(function (error) {
           req.flash('error', error.message)
         })
-        res.redirect('/')
+        req.flash('rib', req.body)
+        res.redirect('/ribs/add')
       } else if (err) {
         next(err)
       } else {
@@ -29,7 +30,9 @@ module.exports = function (app) {
 
   app.get('/ribs/add', auth.ensureAuth, function (req, res, next) {
     res.render('addRib', {
-      title: 'Ajouter un RIB'
+      title: 'Ajouter un RIB',
+      rib: req.flash('rib')[0],
+      errors: req.flash('error')
     })
   })
 
