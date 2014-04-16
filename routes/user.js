@@ -21,6 +21,8 @@ module.exports = function (app) {
         } else {
           var friend = res.locals.indexedFriends[req.params.fbId]
         }
+        if (!friend) return next()
+
         res.render('user', {
           ribs: r.ribs,
           title: friend.name,
