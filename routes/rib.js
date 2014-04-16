@@ -11,7 +11,7 @@ module.exports = function (app) {
     Rib.accountNumber = req.body.accountNumber.toUpperCase()
     Rib.key = req.body.key
     Rib.canonical = Rib.bank + Rib.counter + Rib.accountNumber + Rib.key
-    Rib._user = req.user._id
+    Rib._user = req.user.facebook
     Rib.save(function (err, rib) {
       if (err && err.name === 'ValidationError') {
         _(err.errors).map(function (error) {
@@ -22,7 +22,7 @@ module.exports = function (app) {
         next(err)
       } else {
         req.flash('success', 'RIB ajouté avec succès')
-        res.redirect('/')
+        res.redirect('/u/' + req.user.facebook)
       }
     })
   })
@@ -60,7 +60,7 @@ module.exports = function (app) {
         res.redirect('/')
       } else {
         req.flash('success', 'RIB supprimé avec succès')
-        res.redirect('/')
+        res.redirect('/u/' + req.user.facebook)
       }
     })
   })
