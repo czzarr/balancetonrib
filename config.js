@@ -13,7 +13,7 @@ module.exports.ports = {
 }
 
 module.exports.siteHost = module.exports.isProd
-  ? 'balancetonrib.nodejitsu.com'
+  ? 'balancetonrib.jit.su'
   : 'localhost.dev:' + module.exports.ports.site
 
 module.exports.siteOrigin = '//' + module.exports.siteHost
