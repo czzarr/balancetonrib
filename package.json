@@ -28,7 +28,6 @@
     "async": "^0.6.0",
     "debug": "^0.8.0",
     "mongoose-validator": "^0.2.2",
-    "bcrypt": "^0.7.7",
     "static-favicon": "^1.0.2",
     "morgan": "^1.0.0",
     "cookie-parser": "^1.0.1",
@@ -72,5 +71,9 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "subdomain": "balancetonrib",
+  "engines": {
+    "node": "0.10.x"
   }
 }
