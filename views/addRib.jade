@@ -4,7 +4,7 @@ block content
 
   form#form-add-rib(role='form', method='POST', action='/ribs')
     h1 Ajouter un RIB
-    input(type='hidden', name='_csrf', value=csrf)
+    input(type='hidden', name='_csrf', value=_csrf)
     div.form-group
       label(for='bank') Code banque (5 chiffres)
       input.form-control(type='text', id='bank', name='bank',

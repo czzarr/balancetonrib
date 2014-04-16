@@ -173,7 +173,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
 Site.prototype.addTemplateLocals = function (req, res, next) {
   res.locals.user = req.user
   res.locals.req = req
-  //res.locals._csrf = req.csrfToken()
+  res.locals._csrf = req.csrfToken()
   next()
 }
 
@@ -204,7 +204,7 @@ Site.prototype.setupSessions = function () {
       auto_reconnect: true
     })
   }))
-  //self.app.use(csrf())
+  self.app.use(csrf())
 
   // Passport
   self.app.use(passport.initialize())

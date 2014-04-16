@@ -51,10 +51,6 @@ var Rib = mongoose.Schema({
   }
 })
 
-Rib.pre('save', function (next) {
-  checksum(this, next)
-})
-
 Rib.plugin(plugin.modifyDate)
 Rib.plugin(plugin.createDate)
 
