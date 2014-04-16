@@ -5,7 +5,7 @@ module.exports.mongo = module.exports.isProd
   : 'mongodb://localhost:27017/rib'
 
 module.exports.ports = {
-  site: module.exports.isProd ? 7300 : 4000,
+  site: module.exports.isProd ? process.env.PORT : 4000,
   liveupdater: module.exports.isProd ? 7301 : 4001,
   admin: 4002
 }
