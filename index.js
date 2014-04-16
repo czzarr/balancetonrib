@@ -148,7 +148,8 @@ Site.prototype.fetchFriends = function (req, res, next) {
               // store friends object for 1 hour
               friendsdb.put(req.user.facebook, friends, { ttl: 1000 * 60 * 60 }, function (err) {
                 if (err) return next(err)
-                _res.locals.friends = _.indexBy(friends, 'uid')
+                _res.locals.indexedFriends = _.indexBy(friends, 'uid')
+                _res.locals.friends = friends
                 next()
               })
             }
@@ -159,7 +160,8 @@ Site.prototype.fetchFriends = function (req, res, next) {
         return next(err)
       }
     } else {
-      res.locals.friends = _.indexBy(value, 'uid')
+      res.locals.indexedFriends = _.indexBy(value, 'uid')
+      res.locals.friends = value
       next()
     }
   })
