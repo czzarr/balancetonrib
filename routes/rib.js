@@ -43,7 +43,7 @@ module.exports = function (app) {
             .exec(cb)
       },
       permission: ['rib', function (cb, r) {
-        if (r.rib._user === req.user.id) {// same user
+        if (r.rib._user === req.user.facebook) {// same user
           cb(null)
         } else {
           cb(new Error('Cannot delete another user\'s RIB'))

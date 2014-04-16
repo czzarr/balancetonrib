@@ -17,13 +17,15 @@ module.exports = function (app) {
           var friend = {}
           friend.name = req.user.profile.name
           friend.pic_big = req.user.profile.picture
+          var me = true
         } else {
           var friend = res.locals.indexedFriends[req.params.fbId]
         }
         res.render('user', {
           ribs: r.ribs,
           title: friend.name,
-          friend: friend
+          friend: friend,
+          me: me
         })
     })
   })

@@ -25,9 +25,15 @@ block content
                       td #{rib.counter}
                       td #{rib.accountNumber}
                       td #{rib.key}
+                      if (me)
+                        td
+                          a(href='/ribs/delete/#{rib._id}') Supprimer
         else
           p Pas de RIB, c'est balo.
           div 
-            button.btn.btn-primary Invitez #{friend.name} à renseigner son RIB
+            if (me)
+              a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
+            else
+              button.btn.btn-primary Invitez #{friend.name} à renseigner son RIB
 
 
