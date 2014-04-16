@@ -1,4 +1,6 @@
-module.exports.mongo = 'mongodb://localhost:27017/rib'
+module.exports.mongo = module.exports.isProd
+  ? process.env.MONGO_PROD
+  : 'mongodb://localhost:27017/rib'
 
 module.exports.isProd = process.browser
   ? !/^local/.test(window.location.hostname)
@@ -11,12 +13,12 @@ module.exports.ports = {
 }
 
 module.exports.siteHost = module.exports.isProd
-  ? 'www.balancetonrib.com'
+  ? 'balancetonrib.nodejitsu.com'
   : 'localhost.dev:' + module.exports.ports.site
 
 module.exports.siteOrigin = '//' + module.exports.siteHost
 
 module.exports.secureSiteOrigin = (module.exports.isProd
-  ? 'https:'
+  ? 'http:'
   : 'http:'
 ) + module.exports.siteOrigin

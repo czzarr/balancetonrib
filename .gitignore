@@ -5,5 +5,4 @@ bower_components/*
 *.swo
 npm-debug.log
 bundle.js
-secrets.js
 friends.db
