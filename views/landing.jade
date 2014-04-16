@@ -1,0 +1,14 @@
+extends layouts/landing
+
+block content
+  h1.
+    <span class="strong">Arrêtez</span> d'échanger <span class="strong">sans cesse</span> des <span class="strong">RIBs</span> par email !
+  h2. 
+    Inscrivez-vous <span class="strong">en 10 secondes</span>, 
+    et <span class="strong">accédez</span> facilement aux RIBs de vos amis.
+
+  br
+  form(action='/login/facebook')
+    button.btn.btn-lg.btn-social.btn-facebook.navbar-btn
+      i.fa.fa-facebook
+      | Login avec Facebook

@@ -4,6 +4,9 @@ module.exports = function (app) {
       title: 'Accueil',
       errors: req.flash('error')
     }
-    res.render('home', locals)
+    if (req.user)
+      res.render('home', locals)
+    else
+      res.render('landing', locals)
   })
 }

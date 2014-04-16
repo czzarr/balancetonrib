@@ -1,13 +1,33 @@
 extends layouts/main
 
 block content
-  main
-    .container
-      img(src=friend.pic_big, alt=friend.name)
-      p= friend.name
-      each rib in ribs
-        .rib.
-          Code Banque #{rib.bank}
-          Code Guichet #{rib.bank}
-          Numéro de Compte #{rib.accountNumber}
-          Clé RIB #{ribkey}
+  .row
+    .col-sm-4
+      .user
+        img.profile-pic-big(src=friend.pic_big, alt=friend.name)
+        h2= friend.name
+    .col-sm-8
+      h1 RIB
+      .ribs
+        if (ribs.length > 0)
+            .rib
+              table.table
+                thead
+                  tr
+                    th Code Banque
+                    th Code Guichet
+                    th Numéro de Compte
+                    th Clé RIB
+                tbody
+                  each rib in ribs
+                    tr
+                      td #{rib.bank}
+                      td #{rib.counter}
+                      td #{rib.accountNumber}
+                      td #{rib.key}
+        else
+          p Pas de RIB, c'est balo.
+          div 
+            button.btn.btn-primary Invitez #{friend.name} à renseigner son RIB
+
+

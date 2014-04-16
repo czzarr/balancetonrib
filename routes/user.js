@@ -11,9 +11,16 @@ module.exports = function (app) {
             .exec(cb)
         }
       }, function (err, r) {
+        console.log(r);
         if (err) return next(err)
 
-        var friend = res.locals.friends[req.params.fbId]
+        if (req.user.facebook === req.params.fbId) {
+          var friend = {}
+          friend.name = req.user.profile.name
+          friend.pic_big = req.user.profile.picture
+        } else {
+          var friend = res.locals.friends[req.params.fbId]
+        }
         res.render('user', {
           ribs: r.ribs,
           title: friend.name,
