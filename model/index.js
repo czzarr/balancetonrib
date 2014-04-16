@@ -20,7 +20,9 @@ files.forEach(function (file) {
 })
 
 module.exports.connect = function (cb) {
-  cb || (cb = function () {})
+  cb || (cb = function (err, val) {
+    console.log(err, val);
+  })
   cb = once(cb)
   mongoose.set('debug', !config.isProd)
   mongoose.connect(config.mongo)
