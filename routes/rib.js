@@ -5,14 +5,23 @@ var model = require('../model')
 
 module.exports = function (app) {
   app.post('/ribs', auth.ensureAuth, function (req, res, next) {
-    var Rib = new model.Rib()
-    Rib.bank = req.body.bank
-    Rib.counter = req.body.counter
-    Rib.accountNumber = req.body.accountNumber.toUpperCase()
-    Rib.key = req.body.key
-    Rib.canonical = Rib.bank + Rib.counter + Rib.accountNumber + Rib.key
-    Rib._user = req.user.facebook
-    Rib.save(function (err, rib) {
+    async.auto({
+      rib: function (cb) {
+        var Rib = new model.Rib()
+        Rib.bank = req.body.bank
+        Rib.counter = req.body.counter
+        Rib.accountNumber = req.body.accountNumber.toUpperCase()
+        Rib.key = req.body.key
+        Rib.canonical = Rib.bank + Rib.counter + Rib.accountNumber + Rib.key
+        Rib._user = req.user.facebook
+        Rib.save(cb)
+      },
+      user: ['rib', function (cb, r) {
+        model.User
+          .update({ facebook: req.user.facebook }, { $set: { hasRib: true } })
+          .exec(cb)
+      }]
+    }, function (err, r) {
       if (err && err.name === 'ValidationError') {
         _(err.errors).map(function (error) {
           req.flash('error', error.message)
@@ -54,6 +63,11 @@ module.exports = function (app) {
       }],
       delete: ['permission', function (cb, r) {
         r.rib.remove(cb)
+      }],
+      user: ['delete', function (cb, r) {
+        model.User
+          .update({ facebook: req.user.facebook }, { $set: { hasRib: false } })
+          .exec(cb)
       }]
     }, function (err, r) {
       if (err) {

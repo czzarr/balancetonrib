@@ -18,6 +18,10 @@ var User = new mongoose.Schema({
       validate({ message: 'An email address is required.' }, 'notEmpty')
     ]
   },
+  hasRib : {
+    type: Boolean,
+    default: false
+  },
   profile: {
     name: { type: String, default: '' },
     picture: { type: String, default: '' }
