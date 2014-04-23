@@ -1,5 +1,5 @@
-//var bcrypt = require('bcrypt')
 var config = require('../config')
+var email = require('../lib/email')
 var model = require('./')
 var mongoose = require('mongoose')
 var plugin = require('./plugin')
@@ -34,6 +34,10 @@ User.pre('validate', function (next) {
   user.email = user.email.trim()
   user.profile.name = user.profile.name.trim()
   next()
+})
+
+User.post('save', function (user) {
+  email.notifyAdmin('New user', user)
 })
 
 User.plugin(plugin.modifyDate)
