@@ -1,0 +1,10 @@
+.DS_Store
+tmp/reload.txt
+
+/out/*
+/.git/*
+/node_modules/*
+npm-debug.log
+
+/client/*
+/stylus/*
