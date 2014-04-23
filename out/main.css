@@ -1,1 +1,86 @@
-body{background-color:#eee;color:#111}main{padding-top:20px}.navbar.navbar-default{margin-bottom:0}.navbar-default .navbar-header .navbar-brand{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif}.navbar-nav .profile-image{width:30px;height:30px;margin:-15px 15px -15px 0}.search-only .selectize-control.form-control{width:400px;-webkit-border-radius:0;border-radius:0;padding:0;background-color:#fff;}.search-only .selectize-control.form-control .selectize-input{-webkit-border-radius:0;border-radius:0;border:none;-webkit-box-shadow:none;box-shadow:none;padding-left:40px;cursor:default;min-height:10px}.search-only .selectize-control.form-control .selectize-dropdown{-webkit-border-radius:0;border-radius:0;border:none;height:auto;margin:0}.search-only .selectize-control.form-control .selectize-dropdown-content{margin-left:-40px;}.search-only .selectize-control.form-control .selectize-dropdown-content .selectize-dropdown-img{width:30px;height:30px}.hero{padding-bottom:80px;padding-top:80px;background-color:#3da8e3;font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;color:#fff;}.hero h1,.hero h2{font-weight:300;}.hero h1 .strong,.hero h2 .strong{font-weight:700}.hero .white-arrow{position:relative;top:-137px;left:407px}.user{text-align:center;}.user img{-webkit-border-radius:100px;border-radius:100px;height:200px;margin-bottom:.9em;width:200px}#form-add-rib{max-width:330px;margin:40px auto;}#form-add-rib h1{margin-bottom:30px}
+body {
+  background-color: #eee;
+  color: #111;
+}
+main {
+  padding-top: 20px;
+}
+.navbar.navbar-default {
+  margin-bottom: 0;
+}
+.navbar-default .navbar-header .navbar-brand {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.navbar-nav .profile-image {
+  width: 30px;
+  height: 30px;
+  margin: -15px 15px -15px 0;
+}
+.search-only .selectize-control.form-control {
+  width: 400px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: #fff;
+}
+.search-only .selectize-control.form-control .selectize-input {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding-left: 40px;
+  cursor: default;
+  min-height: 10px;
+}
+.search-only .selectize-control.form-control .selectize-dropdown {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: none;
+  height: auto;
+  margin: 0;
+}
+.search-only .selectize-control.form-control .selectize-dropdown-content {
+  margin-left: -40px;
+}
+.search-only .selectize-control.form-control .selectize-dropdown-content .selectize-dropdown-img {
+  width: 30px;
+  height: 30px;
+}
+.hero {
+  padding-bottom: 80px;
+  padding-top: 80px;
+  background-color: #3da8e3;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.hero h1,
+.hero h2 {
+  font-weight: 300;
+}
+.hero h1 .strong,
+.hero h2 .strong {
+  font-weight: 700;
+}
+.hero .white-arrow {
+  position: relative;
+  top: -137px;
+  left: 407px;
+}
+.user {
+  text-align: center;
+}
+.user img {
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  height: 200px;
+  margin-bottom: 0.9em;
+  width: 200px;
+}
+#form-add-rib {
+  max-width: 330px;
+  margin: 40px auto;
+}
+#form-add-rib h1 {
+  margin-bottom: 30px;
+}
