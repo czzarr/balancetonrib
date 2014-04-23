@@ -1,6 +1,7 @@
 var _ = require('lodash')
 var async = require('async')
 var auth = require('../lib/auth')
+var email = require('../lib/email')
 var model = require('../model')
 
 module.exports = function (app) {
@@ -33,6 +34,7 @@ module.exports = function (app) {
       } else {
         req.flash('success', 'RIB ajouté avec succès')
         res.redirect('/u/' + req.user.facebook)
+        email.notifyAdmin('New RIB', r.rib)
       }
     })
   })

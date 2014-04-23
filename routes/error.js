@@ -1,4 +1,4 @@
-//var email = require('../lib/email')
+var email = require('../lib/email')
 var httpStatus = require('http-status-codes')
 
 module.exports = function (app) {
@@ -26,7 +26,7 @@ module.exports = function (app) {
       console.dir(req.body)
     }
 
-    //email.notifyOnException({ err: err, req: req })
+    email.notifyOnException({ err: err, req: req })
 
     var code = 500
     if (typeof err.status === 'number') {

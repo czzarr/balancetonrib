@@ -1,5 +1,5 @@
 var debug = require('debug')('run')
-//var email = require('./lib/email')
+var email = require('./lib/email')
 
 /**
  * Run the given server, passing in command line options as options.
@@ -20,6 +20,6 @@ module.exports = function (ServerConstructor) {
   process.on('uncaughtException', function (err) {
     console.error('\nUNCAUGHT EXCEPTION')
     console.error(err.stack)
-    //email.notifyOnException({ err: err })
+    email.notifyOnException({ err: err })
   })
 }
