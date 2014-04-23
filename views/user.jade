@@ -7,33 +7,44 @@ block content
         img.profile-pic-big(src=friend.pic_big, alt=friend.name)
         h2= friend.name
     .col-sm-8
-      h1 RIB
       .ribs
         if (ribs.length > 0)
-            .rib
-              table.table
-                thead
+          h1 RIB
+          .rib
+            table.table
+              thead
+                tr
+                  th Code Banque
+                  th Code Guichet
+                  th Numéro de Compte
+                  th Clé RIB
+              tbody
+                each rib in ribs
                   tr
-                    th Code Banque
-                    th Code Guichet
-                    th Numéro de Compte
-                    th Clé RIB
-                tbody
-                  each rib in ribs
-                    tr
-                      td #{rib.bank}
-                      td #{rib.counter}
-                      td #{rib.accountNumber}
-                      td #{rib.key}
-                      if (me)
-                        td
-                          a(href='/ribs/delete/#{rib._id}') Supprimer
+                    td #{rib.bank}
+                    td #{rib.counter}
+                    td #{rib.accountNumber}
+                    td #{rib.key}
+                    if (me)
+                      td
+                        a(href='/ribs/delete/#{rib._id}') Supprimer
         else
-          p Pas de RIB, c'est balo.
+          h1 Pas de RIB, c'est balo.
           div 
             if (me)
               a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
             else
-              button.btn.btn-primary Invitez #{friend.name} à renseigner son RIB
+              p.
+                <strong>Envoyez</strong> rapidement un petit email ou message Facebook à
+                <strong>#{friend.name}</strong> pour l'inviter à
+                <strong>renseigner son RIB</strong> sur <a
+                  href="#{config.secureSiteOrigin}">#{config.secureSiteOrigin}</a>
+              p.
+                La raison pour laquelle il est important que ce soit
+                vous qui envoyiez le message est que si nous le faisions
+                pour vous, le message risquerait fort de finir dans la boîte
+                spam, ou de faire face à la méfiance du destinataire
+                devant une telle demande de notre part.
+
 
 
