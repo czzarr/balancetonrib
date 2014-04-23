@@ -11,7 +11,7 @@ module.exports.ports = {
 }
 
 module.exports.siteHost = module.exports.isProd
-  ? 'balancetonrib.jit.su'
+  ? 'balancetonrib.herokuapp.com'
   : 'localhost.dev:' + module.exports.ports.site
 
 module.exports.siteOrigin = '//' + module.exports.siteHost

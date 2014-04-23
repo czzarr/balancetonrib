@@ -47,6 +47,7 @@ Site.prototype.start = function (done) {
   // Templating
   self.app.set('views', path.join(__dirname, 'views'))
   self.app.set('view engine', 'jade')
+  self.app.locals.config = config
 
   // Logging
   self.app.use(logger('dev'))
@@ -171,9 +172,9 @@ Site.prototype.fetchFriends = function (req, res, next) {
  * Make certain variables available to templates on this request.
  */
 Site.prototype.addTemplateLocals = function (req, res, next) {
-  res.locals.user = req.user
-  res.locals.req = req
   res.locals._csrf = req.csrfToken()
+  res.locals.req = req
+  res.locals.user = req.user
   next()
 }
 
