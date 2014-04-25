@@ -1,8 +1,6 @@
 module.exports.isProd = (process.env.NODE_ENV === 'production')
 
-module.exports.mongo = module.exports.isProd
-  ? process.env.MONGOHQ_URL
-  : 'mongodb://localhost:27017/rib'
+module.exports.mongo = 'mongodb://localhost:27017/balancetonrib'
 
 module.exports.ports = {
   site: module.exports.isProd ? process.env.PORT : 4000,
