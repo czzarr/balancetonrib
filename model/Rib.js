@@ -5,6 +5,22 @@ var validate = require('mongoose-validator').validate
 var checksum = require('../lib/rib').checksum
 
 var Rib = mongoose.Schema({
+  iban: {
+    type: String,
+    validate: [
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
+    ]
+  },
+  bic: {
+    type: String,
+    validate: [
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
+      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
+    ]
+  },
   bank: {
     type: String,
     validate: [

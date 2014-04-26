@@ -6,40 +6,20 @@ block content
     h1 Ajouter un RIB
     input(type='hidden', name='_csrf', value=_csrf)
     div.form-group
-      label(for='bank') Code banque (5 chiffres)
+      label(for='iban') IBAN 
       input.form-control(
         type='text', 
-        id='bank', 
-        name='bank',
-        value=(rib && rib.bank),
-        maxlength='5'
+        id='iban', 
+        name='iban',
+        value=(rib && rib.iban)
       )
     div.form-group
-      label(for='counter') Code guichet (5 chiffres)
+      label(for='bic') Code BIC 
       input.form-control(
         type='text', 
-        id='counter', 
-        name='counter',
-        value=(rib && rib.counter),
-        maxlength='5'
-      )
-    div.form-group
-      label(for='accountNumber') Numéro de compte (11 chiffres/lettres)
-      input.form-control(
-        type='text', 
-        id='accountNumber',
-        name='accountNumber', 
-        value=(rib && rib.accountNumber),
-        maxlength='11'
-      )
-    div.form-group
-      label(for='key') Clé RIB (2 chiffres)
-      input.form-control(
-        type='text', 
-        id='key', 
-        name='key',
-        value=(rib && rib.key),
-        maxlength='2'
+        id='bic', 
+        name='bic',
+        value=(rib && rib.bic)
       )
     div
       button.btn.btn-primary.btn-block(type='submit') Valider
@@ -47,4 +27,6 @@ block content
   .text-center
     small.
       Par mesure de sécurité, votre RIB ne sera accessible qu'à vos amis
-      Facebook. Le RIB n'est pas un document sensible, le pire qui puisse vous arriver est de recevoir de l'argent par erreur.
+      Facebook. 
+      Rassurez-vous, une vérification algorithmique est effectuée pour vérifier que
+      vous n'avez pas fait d'erreur.
