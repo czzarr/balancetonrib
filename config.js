@@ -15,6 +15,6 @@ module.exports.siteHost = module.exports.isProd
 module.exports.siteOrigin = '//' + module.exports.siteHost
 
 module.exports.secureSiteOrigin = (module.exports.isProd
-  ? 'http:'
+  ? 'https:'
   : 'http:'
 ) + module.exports.siteOrigin
