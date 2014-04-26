@@ -9,12 +9,12 @@ module.exports.ports = {
 }
 
 module.exports.siteHost = module.exports.isProd
-  ? 'balancetonrib.herokuapp.com'
+  ? 'balancetonrib.com'
   : 'localhost.dev:' + module.exports.ports.site
 
 module.exports.siteOrigin = '//' + module.exports.siteHost
 
 module.exports.secureSiteOrigin = (module.exports.isProd
-  ? 'http:'
+  ? 'https:'
   : 'http:'
 ) + module.exports.siteOrigin
