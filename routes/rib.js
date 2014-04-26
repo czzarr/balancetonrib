@@ -49,7 +49,7 @@ module.exports = function (app) {
 
   app.get('/ribs/delete/:ribId', auth.ensureAuth, function (req, res, next) {
     var ribId = req.params.ribId
-    
+
     async.auto({
       rib: function (cb) {
           model.Rib
