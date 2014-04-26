@@ -61,6 +61,8 @@ Site.prototype.start = function (done) {
 
   // Sessions and auth
   self.setupSessions()
+  if (config.isProd)
+    self.app.use(self.sslForAuthedUsers)
 
   // Template locals
   self.app.use(self.addTemplateLocals)
@@ -213,6 +215,14 @@ Site.prototype.setupSessions = function () {
   passport.serializeUser(auth.serializeUser)
   passport.deserializeUser(auth.deserializeUser)
   passport.use(auth.facebookStrategy)
+}
+
+Site.prototype.sslForAuthedUsers = function (req, res, next) {
+  if (req.isAuthenticated() && req.protocol !== 'https') {
+    res.redirect(config.secureSiteOrigin + req.url)
+  } else {
+    next()
+  }
 }
 
 if (!module.parent) run(Site)
