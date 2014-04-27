@@ -3,7 +3,6 @@ var mongoose = require('mongoose')
 var plugin = require('./plugin')
 var validate = require('mongoose-validator').validate
 var checkIban = require('../lib/rib').checkIban
-var checkRib = require('../lib/rib').checkRib
 
 var Rib = mongoose.Schema({
   iban: {
@@ -18,7 +17,6 @@ var Rib = mongoose.Schema({
   },
   bic: {
     type: String,
-    required: true,
     validate: [
       validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'len', 8, 11),
       validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'isAlphanumeric'),
@@ -54,12 +52,6 @@ var Rib = mongoose.Schema({
       validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'notEmpty'),
       validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'isNumeric'),
       { validator: function (key) { return key > 1 && key < 97 }, msg: 'La clé doit être un nombre compris entre 1 et 97' }
-    ]
-  },
-  canonical: {
-    type: String,
-    validate: [
-      { validator: checkRib, msg: 'RIB invalide, veuillez vérifier.' }
     ]
   },
   _user: {

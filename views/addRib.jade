@@ -6,18 +6,18 @@ block content
     h1 Ajouter un RIB
     input(type='hidden', name='_csrf', value=_csrf)
     div.form-group
-      label(for='iban') IBAN 
+      label(for='iban') IBAN
       input.form-control(
-        type='text', 
-        id='iban', 
+        type='text',
+        id='iban',
         name='iban',
         value=(rib && rib.iban)
       )
     div.form-group
-      label(for='bic') Code BIC 
+      label(for='bic') Code BIC/SWIFT
       input.form-control(
-        type='text', 
-        id='bic', 
+        type='text',
+        id='bic',
         name='bic',
         value=(rib && rib.bic)
       )
@@ -27,6 +27,6 @@ block content
   .text-center
     small.
       Par mesure de sécurité, votre RIB ne sera accessible qu'à vos amis
-      Facebook. 
+      Facebook.
       Rassurez-vous, une vérification algorithmique est effectuée pour vérifier que
       vous n'avez pas fait d'erreur.

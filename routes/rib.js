@@ -15,7 +15,6 @@ module.exports = function (app) {
         Rib.counter = Rib.iban.slice(9,14)
         Rib.accountNumber = Rib.iban.slice(14,25)
         Rib.key = parseInt(Rib.iban.slice(25), 10)
-        Rib.canonical = Rib.bank + Rib.counter + Rib.accountNumber + Rib.key
         Rib._user = req.user.facebook
         console.log(Rib);
         Rib.save(cb)
