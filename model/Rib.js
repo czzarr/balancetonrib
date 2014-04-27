@@ -17,6 +17,7 @@ var Rib = mongoose.Schema({
   },
   bic: {
     type: String,
+    required: true,
     validate: [
       validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'len', 8, 11),
       validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'isAlphanumeric'),
