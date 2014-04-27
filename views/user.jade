@@ -11,23 +11,30 @@ block content
         if (ribs.length > 0)
           h1 RIB
           .rib
-            table.table
-              thead
-                tr
-                  th Code Banque
-                  th Code Guichet
-                  th Numéro de Compte
-                  th Clé RIB
-              tbody
-                each rib in ribs
+            each rib in ribs
+              table.table
+                tbody
+                  tr
+                    td <strong>IBAN</strong>
+                    td #{rib.iban}
+                  tr
+                    td <strong>BIC</strong>
+                    td #{rib.bic}
+              table.table
+                thead
+                  tr
+                    th Code Banque
+                    th Code Guichet
+                    th Numéro de Compte
+                    th Clé RIB
+                tbody
                   tr
                     td #{rib.bank}
                     td #{rib.counter}
                     td #{rib.accountNumber}
                     td #{rib.key}
-                    if (me)
-                      td
-                        a(href='/ribs/delete/#{rib._id}') Supprimer
+              if (me)
+                a(href='/ribs/delete/#{rib._id}') Supprimer
         else
           h1 Pas de RIB, c'est balo.
           div 
