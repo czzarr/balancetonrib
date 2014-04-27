@@ -9,12 +9,15 @@ module.exports = function (app) {
     async.auto({
       rib: function (cb) {
         var Rib = new model.Rib()
-        Rib.bank = req.body.bank
-        Rib.counter = req.body.counter
-        Rib.accountNumber = req.body.accountNumber.toUpperCase()
-        Rib.key = req.body.key
+        Rib.iban = req.body.iban.toUpperCase().replace(/ /g, '')
+        Rib.bic = req.body.bic.toUpperCase().replace(/ /g, '')
+        Rib.bank = Rib.iban.slice(4,9)
+        Rib.counter = Rib.iban.slice(9,14)
+        Rib.accountNumber = Rib.iban.slice(14,25)
+        Rib.key = parseInt(Rib.iban.slice(25), 10)
         Rib.canonical = Rib.bank + Rib.counter + Rib.accountNumber + Rib.key
         Rib._user = req.user.facebook
+        console.log(Rib);
         Rib.save(cb)
       },
       user: ['rib', function (cb, r) {

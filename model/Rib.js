@@ -2,23 +2,26 @@ var model = require('./')
 var mongoose = require('mongoose')
 var plugin = require('./plugin')
 var validate = require('mongoose-validator').validate
-var checksum = require('../lib/rib').checksum
+var checkIban = require('../lib/rib').checkIban
+var checkRib = require('../lib/rib').checkRib
 
 var Rib = mongoose.Schema({
   iban: {
     type: String,
+    unique: true,
     validate: [
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
+      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'len', 27, 27),
+      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'isAlphanumeric'),
+      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'notEmpty'),
+      { validator: checkIban, msg: 'IBAN invalide, veuillez vérifier.' }
     ]
   },
   bic: {
     type: String,
     validate: [
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
+      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'len', 8, 11),
+      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'isAlphanumeric'),
+      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'notEmpty')
     ]
   },
   bank: {
@@ -54,9 +57,8 @@ var Rib = mongoose.Schema({
   },
   canonical: {
     type: String,
-    unique: true,
     validate: [
-      { validator: checksum, msg: 'RIB invalide, veuillez vérifier.' }
+      { validator: checkRib, msg: 'RIB invalide, veuillez vérifier.' }
     ]
   },
   _user: {
