@@ -9,9 +9,8 @@ var Rib = mongoose.Schema({
     type: String,
     unique: true,
     validate: [
-      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'len', 27, 27),
-      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'isAlphanumeric'),
-      validate({ message: 'L\'IBAN doit être composé de 27 caractères alphanumériques' }, 'notEmpty'),
+      validate({ message: 'L\'IBAN doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
+      validate({ message: 'L\'IBAN ne peut pas être vide' }, 'notEmpty'),
       { validator: checkIban, msg: 'IBAN invalide, veuillez vérifier.' }
     ]
   },
@@ -19,42 +18,16 @@ var Rib = mongoose.Schema({
     type: String,
     required: true,
     validate: [
-      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'len', 8, 11),
-      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'isAlphanumeric'),
-      validate({ message: 'Le code BIC doit être composé de entre 8 et 11 caractères alphanumériques' }, 'notEmpty')
+      validate({ message: 'Le code BIC doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
+      validate({ message: 'Le code BIC ne peut pas être vide' }, 'notEmpty')
     ]
   },
-  bank: {
-    type: String,
-    validate: [
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'isNumeric'),
-      validate({ message: 'Le code banque doit être composé de 5 chiffres' }, 'notEmpty')
-    ]
-  },
-  counter: {
-    type: String,
-    validate: [
-      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'len', 5, 5),
-      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'isNumeric'),
-      validate({ message: 'Le code guichet doit être composé de 5 chiffres' }, 'notEmpty')
-    ]
-  },
-  accountNumber: {
-    type: String,
-    validate: [
-      validate({ message: 'Le numéro de compte doit être composé de 11 chiffres/lettres' }, 'len', 11, 11),
-      validate({ message: 'Le numéro de compte doit être composé de 11 chiffres/lettres' }, 'notEmpty')
-    ]
-  },
-  key: {
-    type: Number,
-    validate: [
-      validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'notEmpty'),
-      validate({ message: 'La clé doit être un nombre compris entre 1 et 97' }, 'isNumeric'),
-      { validator: function (key) { return key > 1 && key < 97 }, msg: 'La clé doit être un nombre compris entre 1 et 97' }
-    ]
-  },
+  country: String,
+  ibankey: String,
+  bank: String,
+  counter: String,
+  accountNumber: String,
+  ribkey: String,
   _user: {
     type: String,
     ref: 'User',

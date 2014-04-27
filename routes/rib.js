@@ -11,10 +11,12 @@ module.exports = function (app) {
         var Rib = new model.Rib()
         Rib.iban = req.body.iban.toUpperCase().replace(/ /g, '')
         Rib.bic = req.body.bic.toUpperCase().replace(/ /g, '')
+        Rib.country = Rib.iban.slice(0,2)
+        Rib.ibankey = Rib.iban.slice(2,4)
         Rib.bank = Rib.iban.slice(4,9)
         Rib.counter = Rib.iban.slice(9,14)
         Rib.accountNumber = Rib.iban.slice(14,25)
-        Rib.key = parseInt(Rib.iban.slice(25), 10)
+        Rib.ribkey = Rib.iban.slice(25)
         Rib._user = req.user.facebook
         console.log(Rib);
         Rib.save(cb)
