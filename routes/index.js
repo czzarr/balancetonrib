@@ -2,7 +2,7 @@ var config = require('../config')
 
 module.exports = function (app) {
   require('./home')(app)
-  //require('./static')(app)
+  require('./static')(app)
 
   // Accounts
   //require('./account')(app)
