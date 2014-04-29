@@ -1,14 +1,6 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
 body {
   background-color: #eee;
-  margin-bottom: 60px;
   color: #111;
-}
-body main {
-  padding-top: 20px;
 }
 .navbar.navbar-default {
   margin-bottom: 0;
@@ -53,12 +45,8 @@ body main {
   height: 30px;
 }
 .hero {
-  position: absolute;
-  bottom: 0;
-  min-height: 100%;
-  width: 100%;
   padding-bottom: 80px;
-  padding-top: 135px;
+  padding-top: 105px;
   background-color: #3da8e3;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
@@ -75,6 +63,15 @@ body main {
   position: relative;
   top: -137px;
   left: 407px;
+}
+.featurette {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  padding: 105px 0;
+}
+.featurette .i-landing {
+  font-size: 130px;
+  color: #999;
 }
 .user {
   text-align: center;
@@ -93,29 +90,6 @@ body main {
 #form-add-rib h1 {
   margin-bottom: 30px;
 }
-.hero .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-}
-.hero .footer a {
-  color: #fff;
-}
-.hero .footer a:hover {
-  color: #d3efff;
-  text-decoration: none;
-}
-main .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-}
-main .footer a {
-  color: #111;
-}
-main .footer a:hover {
-  color: #333;
-  text-decoration: none;
+footer {
+  text-align: center;
 }
