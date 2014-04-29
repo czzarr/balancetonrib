@@ -4,6 +4,7 @@ html {
 }
 body {
   background-color: #eee;
+  margin-bottom: 60px;
   color: #111;
 }
 body main {
@@ -21,7 +22,7 @@ body main {
   margin: -15px 15px -15px 0;
 }
 .search-only .selectize-control.form-control {
-  width: 400px;
+  width: 290px;
   -webkit-border-radius: 0;
   border-radius: 0;
   padding: 0;
