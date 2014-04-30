@@ -5,21 +5,25 @@ block content
 
     section
       .container
-        if (rib)
-          h2 Votre RIB
-          .rib
-            include includes/rib
-        else
-          h2 Vous n'avez pas encore ajouté votre RIB
-          div
-            a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
+        .row
+          .col-sm-8
+            if (rib)
+              h2 Votre RIB
+              .rib
+                include includes/rib
+            else
+              h2 Vous n'avez pas encore ajouté votre RIB
+              div
+                a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
 
     section
       .container
-        h2 Certains de vos amis qui ont renseigné leur RIB
-        .friendsWithRib
-          if (friendsWithRib && friendsWithRib.length > 0)
-            each friend in friendsWithRib
-              div
-                img(src='#{friend.profile.picture}',alt='#{friend.profile.name}')
-                a(href='/u/#{friend.facebook}')= friend.profile.name
+        .row
+          .col-sm-8
+            h2 Certains de vos amis qui ont renseigné leur RIB
+            .friendsWithRib
+              if (friendsWithRib && friendsWithRib.length > 0)
+                each friend in friendsWithRib
+                  div
+                    +picture(friend.facebook, 50, 50)(class='list-picture', alt=friend.profile.name)
+                    a.list-name(href='/u/#{friend.facebook}')= friend.profile.name

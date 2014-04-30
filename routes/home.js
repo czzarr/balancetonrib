@@ -16,6 +16,7 @@ module.exports = function (app) {
             model.User
               .find({ hasRib: true, facebook : { $in: friends } })
               .select('profile facebook')
+              .limit(10)
               .exec(cb)
           }
         }, function (err, r) {
