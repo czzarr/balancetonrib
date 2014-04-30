@@ -18,14 +18,13 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
             select#friends.form-control(placeholder='Sélectionner un(e) ami(e)...')
               each friend in friends
                 option
-                  option(value='#{friend.uid}', data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
+                  option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
         ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse
           unless (user.hasRib)
             li: a(href='/ribs/add') Ajouter un RIB
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              +picture(user.facebook,30,30)(class='navbar-picture',
-              alt=user.profile.name)
+              +picture(user.facebook,30,30)(class='navbar-picture', alt=user.profile.name)
               | #{user.profile.name}&nbsp;
               i.caret
             ul.dropdown-menu
