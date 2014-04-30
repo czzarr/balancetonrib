@@ -16,7 +16,7 @@ module.exports = function (app) {
         if (req.user.facebook === req.params.fbId) {
           var friend = {}
           friend.name = req.user.profile.name
-          friend.pic_big = req.user.profile.picture
+          friend.uid = req.user.facebook
           var me = true
         } else {
           var friend = res.locals.indexedFriends[req.params.fbId]

@@ -1,5 +1,29 @@
-extends layouts/landing
+extends layouts/main
 
 block content
-  h2 Entrez le nom d'un(e) ami(e)
-  img.white-arrow.hidden-xs.hidden-sm(src='/whiteArrow.png')
+  .wrap
+
+    section
+      .container
+        .row
+          .col-sm-8
+            if (rib)
+              h2 Votre RIB
+              .rib
+                include includes/rib
+            else
+              h2 Vous n'avez pas encore ajouté votre RIB
+              div
+                a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
+
+    section
+      .container
+        .row
+          .col-sm-8
+            h2 Certains de vos amis qui ont renseigné leur RIB
+            .friendsWithRib
+              if (friendsWithRib && friendsWithRib.length > 0)
+                each friend in friendsWithRib
+                  div
+                    +picture(friend.facebook, 50, 50)(class='list-picture', alt=friend.profile.name)
+                    a.list-name(href='/u/#{friend.facebook}')= friend.profile.name

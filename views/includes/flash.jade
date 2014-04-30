@@ -1,0 +1,15 @@
+#flash
+  if (errors && errors.length)
+    .alert.alert-danger
+      each msg in errors
+        div= msg
+  if (info && info.length)
+    .alert.alert-info.alert-dismissable
+      button.close(data-dismiss='alert', aria-hidden='true') &times;
+      each msg in info
+        div= msg
+  if (success && success.length)
+    .alert.alert-success.alert-dismissable
+      button.close(data-dismiss='alert', aria-hidden='true') &times;
+      each msg in success
+        div= msg

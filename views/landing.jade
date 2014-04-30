@@ -1,18 +1,37 @@
-extends layouts/landing
+extends layouts/main
 
 block content
-  h1.
-    <span class="strong">Arrêtez</span> d'échanger <span class="strong">sans cesse</span> des <span class="strong">RIBs</span> par email !
-  h2. 
-    Inscrivez-vous <span class="strong">en 10 secondes</span>, 
-    et <span class="strong">accédez</span> facilement aux RIBs de vos amis.
 
-  br
-  form(action='/login/facebook')
-    button.btn.btn-lg.btn-social.btn-facebook.navbar-btn
-      i.fa.fa-facebook
-      | Login avec Facebook
-  p: small En vous connectant vous acceptez les CGU.
-  a(href='https://www.gandi.net/ssl/secured/balancetonrib.com/52810/6be402b7aa',
-  target='_blank')
-    img(src='/GANDI_SSL2.png', alt='Sécurisé par Gandi SSL')
+  section.hero
+    .container
+      h1.
+        <span class="strong">Arrêtez</span> d'échanger <span class="strong">sans cesse</span> des <span class="strong">RIBs</span> par email !
+      h2. 
+        Inscrivez-vous <span class="strong">en 10 secondes</span>, 
+        et <span class="strong">accédez</span> facilement aux RIBs de vos amis.
+
+      br
+      form(action='/login/facebook')
+        button.btn.btn-lg.btn-social.btn-facebook.navbar-btn
+          i.fa.fa-facebook
+          | Login avec Facebook
+      p: small En vous connectant vous acceptez les CGU.
+      a(href='https://www.gandi.net/ssl/secured/balancetonrib.com/52810/6be402b7aa',
+      target='_blank')
+        img(src='/GANDI_SSL2.png', alt='Sécurisé par Gandi SSL')
+
+  section.featurette
+    .container
+      .row
+        .col-sm-4
+          i.fa.fa-lock.i-landing
+          h3 Encryption
+          p Tout le trafic de balancetonrib.com est encrypté en SSL, garantissant que personne ne pourra l'obtenir sans être ami avec vous sur Facebook
+        .col-sm-4
+          i.fa.fa-shield.i-landing
+          h3 Sécurité
+          p Partager votre RIB ne vous expose pas au piratage du compte bancaire comme l'utilisation de la carte bleue en ligne. Notre base de données est probablement plus safe que votre ordinateur.
+        .col-sm-4
+          i.fa.fa-smile-o.i-landing
+          h3 Simplicité
+          p Perdez moins de temps à faire vos virements et vos remboursements. Vous avez autre chose faire que fouiller vos mails pour retrouver des RIBs!
