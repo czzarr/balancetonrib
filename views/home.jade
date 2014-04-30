@@ -16,11 +16,8 @@ block content
               div
                 a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
 
-    section
-      .container
-        .row
-          .col-sm-8
-            h2 Quelques RIBs déjà renseignés
+          .col-sm-4
+            h3 Quelques RIBs déjà renseignés
             .friendsWithRib
               if (friendsWithRib && friendsWithRib.length > 0)
                 each friend in friendsWithRib
