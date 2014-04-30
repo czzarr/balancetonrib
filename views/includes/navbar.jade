@@ -24,7 +24,8 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
             li: a(href='/ribs/add') Ajouter un RIB
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
-              img.profile-image(src='#{user.profile.picture}')
+              +picture(user.facebook,30,30)(class='navbar-picture',
+              alt=user.profile.name)
               | #{user.profile.name}&nbsp;
               i.caret
             ul.dropdown-menu

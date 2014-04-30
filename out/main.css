@@ -11,9 +11,7 @@ body .wrap section {
 .navbar-default .navbar-header .navbar-brand {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.navbar-nav .profile-image {
-  width: 30px;
-  height: 30px;
+.navbar-nav .navbar-picture {
   margin: -15px 15px -15px 0;
 }
 .search-only .selectize-control.form-control {

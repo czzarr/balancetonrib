@@ -1,0 +1,4 @@
+mixin picture(uid, width, height)
+  img(class!=attributes.class,
+  src='https://graph.facebook.com/#{uid}/picture?width=#{width}&height=#{height}',
+  alt!=attributes.alt)
