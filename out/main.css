@@ -2,6 +2,9 @@ body {
   background-color: #eee;
   color: #111;
 }
+body .wrap section {
+  padding: 65px 0;
+}
 .navbar.navbar-default {
   margin-bottom: 0;
 }
@@ -58,11 +61,6 @@ body {
 .hero h1 .strong,
 .hero h2 .strong {
   font-weight: 700;
-}
-.hero .white-arrow {
-  position: relative;
-  top: -137px;
-  left: 407px;
 }
 .featurette {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -1,57 +1,35 @@
 extends layouts/main
 
 block content
-  .row
-    .col-sm-4
-      .user
-        img.hidden-xs.profile-pic-big(src=friend.pic_big, alt=friend.name)
-        h2= friend.name
-    .col-sm-8
-      .ribs
-        if (ribs.length > 0)
-          h1 RIB
-          .rib
-            each rib in ribs
-              table.table
-                tbody
-                  tr
-                    td <strong>IBAN</strong>
-                    td #{rib.iban}
-                  tr
-                    td <strong>BIC/SWIFT</strong>
-                    td #{rib.bic}
-              table.table
-                thead
-                  tr
-                    th Code Banque
-                    th Code Guichet
-                    th Numéro de Compte
-                    th Clé RIB
-                tbody
-                  tr
-                    td #{rib.bank}
-                    td #{rib.counter}
-                    td #{rib.accountNumber}
-                    td #{rib.ribkey}
-              if (me)
-                a(href='/ribs/delete/#{rib._id}') Supprimer
-        else
-          h1 Pas de RIB, c'est balo.
-          div 
-            if (me)
-              a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
-            else
-              p.
-                <strong>Envoyez</strong> rapidement un petit email ou message Facebook à
-                <strong>#{friend.name}</strong> pour l'inviter à
-                <strong>renseigner son RIB</strong> sur <a
-                  href="#{config.secureSiteOrigin}">#{config.secureSiteOrigin}</a>
-              p.
-                La raison pour laquelle il est important que ce soit
-                vous qui envoyiez le message est que si nous le faisions
-                pour vous, le message risquerait fort de finir dans la boîte
-                spam, ou de faire face à la méfiance du destinataire
-                devant une telle demande de notre part.
-
-
-
+  .wrap
+    section
+      .container
+        .row
+          .col-sm-4
+            .user
+              img.hidden-xs.profile-pic-big(src=friend.pic_big, alt=friend.name)
+              h2= friend.name
+          .col-sm-8
+            .ribs
+              if (ribs.length > 0)
+                h1 RIB
+                .rib
+                  each rib in ribs
+                    include includes/rib
+                    if (me)
+                      a(href='/ribs/delete/#{rib._id}') Supprimer
+              else
+                h1 Pas de RIB, c'est balo.
+                div
+                  if (me)
+                    a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
+                  else
+                    p.
+                      <strong>Envoyez</strong> rapidement un petit email ou message Facebook à
+                      <strong>#{friend.name}</strong> pour l'inviter à
+                      <strong>renseigner son RIB</strong> sur <a
+                        href="#{config.secureSiteOrigin}">#{config.secureSiteOrigin}</a>
+                    p Il est important que l'invitation vienne de vous:
+                      ul
+                        li Parce que vous êtes le/la mieux placé(e) pour assurer à votre ami que votre demande est 100% légitime
+                        li Parce que cela réduit le risque de finir dans le dossier spam de votre ami

@@ -1,0 +1,21 @@
+table.table
+  tbody
+    tr
+      td <strong>IBAN</strong>
+      td #{rib.iban}
+    tr
+      td <strong>BIC/SWIFT</strong>
+      td #{rib.bic}
+table.table
+  thead
+    tr
+      th Code Banque
+      th Code Guichet
+      th Numéro de Compte
+      th Clé RIB
+  tbody
+    tr
+      td #{rib.bank}
+      td #{rib.counter}
+      td #{rib.accountNumber}
+      td #{rib.ribkey}
