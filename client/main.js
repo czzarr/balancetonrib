@@ -4,7 +4,7 @@ require('bootstrap')
 
 $('#friends').selectize({
   create: false,
-  placeholder: 'Sélectionner un(e) ami(e)...',
+  placeholder: 'Chercher le RIB d\'un(e) ami(e)...',
   render: {
     option: function (item, escape) {
       return '<div><img class="selectize-dropdown-img" src="' + escape(item.pic) + '"><span style="margin-left: 5px;">' + escape(item.text) + '</div>'
