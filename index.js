@@ -130,7 +130,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
       if (err.notFound) {
         var accessToken = _.findWhere(req.user.tokens, { kind: 'facebook' }).accessToken
         var endpoint = 'https://graph.facebook.com/fql'
-        var params = '?q=select mutual_friend_count,uid,name,pic_square,pic_big from user where uid in\
+        var params = '?q=select mutual_friend_count,uid,name from user where uid in\
 (select uid2 from friend where uid1=me()) order by mutual_friend_count desc\
         &access_token=' + accessToken
         var query = endpoint + params

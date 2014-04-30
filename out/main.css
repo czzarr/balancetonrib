@@ -72,7 +72,7 @@ body .wrap section {
 .user {
   text-align: center;
 }
-.user img {
+.user .profile-picture {
   -webkit-border-radius: 100px;
   border-radius: 100px;
   height: 200px;
