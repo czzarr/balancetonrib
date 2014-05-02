@@ -7,7 +7,12 @@ html(lang='fr')
 
     meta(charset='utf-8')
 
-    link(rel='dns-prefetch', href='https://www.google-analytics.com')
+    link(rel='dns-prefetch', href='//www.google-analytics.com')
+    link(rel='dns-prefetch', href='//apis.google.com')
+    link(rel='dns-prefetch', href='//connect.facebook.net')
+    link(rel='dns-prefetch', href='//developers.facebook.com')
+    link(rel='dns-prefetch', href='//platform.twitter.com')
+    link(rel='dns-prefetch', href='//twitter.com')
 
     if (locals.title)
       - pageTitle = title + ' | Balance ton RIB'
@@ -80,6 +85,31 @@ html(lang='fr')
     block body
 
     script(src='/bundle.js')
+
+
+    // Facebook Like
+    script.
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=843337402346275&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    // Tweet
+    script.
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+    // Google +1
+    script.
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+
+    // Google Analytics
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

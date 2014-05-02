@@ -15,6 +15,24 @@ body .wrap section {
 footer {
   text-align: center;
 }
+footer .socialbuttons {
+  max-width: 320px;
+  margin: 10px auto;
+}
+footer .socialbuttons .like-footer {
+  float: left;
+  width: 150px !important;
+}
+footer .socialbuttons .tweet-footer {
+  float: left;
+  width: 100px !important;
+}
+footer .socialbuttons .plusone-footer {
+  float: right;
+  text-align: right;
+  overflow: hidden;
+  width: 70px !important;
+}
 .list-picture {
   -webkit-border-radius: 25px;
   border-radius: 25px;
