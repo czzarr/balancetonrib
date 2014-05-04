@@ -70,11 +70,6 @@ Site.prototype.start = function (done) {
 
   // Errors propagate through flash
   self.app.use(flash())
-  self.app.use(function (req, res, next) {
-    //debug('messages', req.flash())
-    //debug('error', res.locals.req.flash('error'))
-    next()
-  })
 
   // Routing
   require('./routes')(self.app)
