@@ -16,11 +16,11 @@ block content
               div
                 a.btn.btn-primary(href='/ribs/add') Ajouter un RIB
 
-          .col-sm-4
-            h3 Quelques RIBs déjà renseignés
-            .friendsWithRib
-              if (friendsWithRib && friendsWithRib.length > 0)
-                each friend in friendsWithRib
-                  div
-                    +picture(friend.facebook, 50, 50)(class='list-picture', alt=friend.profile.name)
-                    a.list-name(href='/u/#{friend.facebook}')= friend.profile.name
+          if (friendsWithRib && friendsWithRib.length > 0)
+            .col-sm-4
+              h3 Quelques RIBs déjà renseignés
+              .friendsWithRib
+                  each friend in friendsWithRib
+                    div
+                      +picture(friend.facebook, 50, 50)(class='list-picture', alt=friend.profile.name)
+                      a.list-name(href='/u/#{friend.facebook}')= friend.profile.name
