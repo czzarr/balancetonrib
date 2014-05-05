@@ -51,7 +51,7 @@ footer .socialbuttons .plusone-footer {
 }
 .hero {
   padding-bottom: 80px;
-  padding-top: 105px;
+  padding-top: 25px;
   background-color: #3da8e3;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #fff;
@@ -67,7 +67,7 @@ footer .socialbuttons .plusone-footer {
 .featurette {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
-  padding: 105px 0;
+  padding: 75px 0;
 }
 .featurette .i-landing {
   font-size: 130px;

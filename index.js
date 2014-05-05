@@ -136,7 +136,6 @@ Site.prototype.fetchFriends = function (req, res, next) {
           var friends = body.data
           function savePagedResults (paging) {
             if (paging && paging.next) {
-              debug('new page')
               request.get(paging.next, function (err, res, body) {
                 var body = JSON.parse(body)
                 friends.concat(body.data)
