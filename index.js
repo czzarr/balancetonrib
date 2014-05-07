@@ -1,8 +1,12 @@
+var config = require('./config')
+if (config.isProd) {
+  require('newrelic')
+}
+
 var _ = require('lodash')
 var async = require('async')
 var auth = require('./lib/auth')
 var bodyParser = require('body-parser')
-var config = require('./config')
 var compress = require('compression')
 var cookieParser = require('cookie-parser')
 var csrf = require('csurf')
