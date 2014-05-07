@@ -47,7 +47,7 @@ Site.prototype.start = function (done) {
 
   // getsentry
   if (config.isProd) {
-    app.use(raven.middleware.express('https://' + secrets.sentry.clientID + ':' + secrets.sentry.clientSecret + '@app.getsentry.com/' + secrets.sentry.appID))
+    self.app.use(raven.middleware.express('https://' + secrets.sentry.clientID + ':' + secrets.sentry.clientSecret + '@app.getsentry.com/' + secrets.sentry.appID))
   }
 
   // Trust the X-Forwarded-* headers from nginx
