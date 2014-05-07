@@ -50,7 +50,7 @@ Site.prototype.start = function (done) {
   self.app.locals.config = config
 
   // Logging
-  self.app.use(logger('dev'))
+  self.app.use(logger(config.isProd ? ':date :remote-addr :method :url :status :res[content-length] :response-time ms' : 'dev' ))
 
   // Headers
   self.app.use(self.addHeaders)
