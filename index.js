@@ -45,6 +45,11 @@ Site.prototype.start = function (done) {
   self.app = express()
   self.server = http.createServer(self.app)
 
+  // getsentry
+  if (config.isProd) {
+    app.use(raven.middleware.express('https://' + secrets.sentry.clientID + ':' + secrets.sentry.clientSecret + '@app.getsentry.com/' + secrets.sentry.appID))
+  }
+
   // Trust the X-Forwarded-* headers from nginx
   self.app.enable('trust proxy')
 

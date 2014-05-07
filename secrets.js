@@ -10,5 +10,10 @@ module.exports = {
   gmail: {
     user: process.env.BTR_GMAIL_USER,
     pass: process.env.BTR_GMAIL_PASS
+  },
+  sentry: {
+    cliendID: process.env.SENTRY_CLIENT_ID,
+    clientSecret: process.env.SENTRY_CLIENT_SECRET,
+    appID: process.env.SENTRY_APP_ID
   }
 }
