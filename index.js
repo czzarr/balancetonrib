@@ -1,3 +1,7 @@
+if (config.isProd) {
+  require('newrelic')
+}
+
 var _ = require('lodash')
 var async = require('async')
 var auth = require('./lib/auth')
