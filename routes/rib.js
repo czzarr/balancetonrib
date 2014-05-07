@@ -18,7 +18,6 @@ module.exports = function (app) {
         Rib.accountNumber = Rib.iban.slice(14,25)
         Rib.ribkey = Rib.iban.slice(25)
         Rib._user = req.user.facebook
-        console.log(Rib);
         Rib.save(cb)
       },
       user: ['rib', function (cb, r) {

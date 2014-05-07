@@ -21,7 +21,6 @@ module.exports = function (app) {
           }
         }, function (err, r) {
           if (err) return next(err)
-          console.log(r.friendsWithRib);
           res.render('home', {
             errors: req.flash('error'),
             success: req.flash('success'),
