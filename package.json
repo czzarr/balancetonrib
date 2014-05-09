@@ -6,14 +6,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify client/main.js -o out/bundle.js -v",
-    "build-css": "stylus -u nib stylus/main.styl -o out/ --include-css -c",
+    "build-js": "browserify client/main.js | uglifyjs -mc > out/bundle.js",
+    "build-css": "stylus -u nib stylus/main.styl -o out/ -c && cat bower_components/bootstrap/dist/css/bootstrap.min.css bower_components/font-awesome/css/font-awesome.min.css node_modules/bootflat/bootflat/css/bootflat.min.css bower_components/bootstrap-social/bootstrap-social.css bower_components/selectize/dist/css/selectize.bootstrap3.css out/main.css > out/balancetonrib.css",
     "build": "npm run build-js && npm run build-css",
     "watch-js": "watchify client/main.js -o out/bundle.js -dv",
     "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
     "watch": "npm run watch-js & npm run watch-css",
     "debug": "DEBUG=auth,site nodemon index.js",
-    "start": "index.js"
+    "start": "index.js",
+    "deploy": "npm run build && git bpush"
   },
   "author": "Stanislas Marion <stanislas.marion@gmail.com> (http://github.com/czzarr)",
   "license": "MIT",
@@ -55,7 +56,7 @@
   "browser": {
     "jquery": "./node_modules/jquery/dist/jquery.min.js",
     "selectize": "./bower_components/selectize/dist/js/standalone/selectize.js",
-    "bootstrap": "./bower_components/bootflat/js/bootstrap.min.js"
+    "bootstrap": "./bower_components/bootstrap/dist/bootstrap.min.js"
   },
   "browserify-shim": {
     "jquery": "jQuery",
@@ -79,5 +80,14 @@
   "subdomain": "balancetonrib",
   "engines": {
     "node": "0.10.x"
+  },
+  "devDependencies": {
+    "browserify": "^3.46.0",
+    "catw": "^0.2.0",
+    "nib": "^1.0.2",
+    "nodemon": "^1.0.17",
+    "stylus": "^0.44.0",
+    "uglify-js": "^2.4.13",
+    "watchify": "^0.8.3"
   }
 }
