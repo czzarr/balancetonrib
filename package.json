@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-js": "browserify client/main.js | uglifyjs -mc > out/bundle.js",
-    "build-css": "stylus -u nib stylus/main.styl -o out/ -c && bin/cat-css.sh",
+    "build-css": "stylus -u nib stylus/main.styl -o out/ -c && ./bin/cat-css.sh && node ./bin/transform-css.js out/balancetonrib.css",
     "build": "npm run build-js && npm run build-css",
     "watch-js": "watchify client/main.js -o out/bundle.js -dv",
     "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
