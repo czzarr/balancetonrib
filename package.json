@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-js": "browserify client/main.js | uglifyjs -mc > out/bundle.js",
-    "build-css": "stylus -u nib stylus/main.styl -o out/ -c && cat bower_components/bootstrap/dist/css/bootstrap.min.css bower_components/font-awesome/css/font-awesome.min.css node_modules/bootflat/bootflat/css/bootflat.min.css bower_components/bootstrap-social/bootstrap-social.css bower_components/selectize/dist/css/selectize.bootstrap3.css out/main.css > out/balancetonrib.css",
+    "build-css": "stylus -u nib stylus/main.styl -o out/ -c && bin/cat-css.sh",
     "build": "npm run build-js && npm run build-css",
     "watch-js": "watchify client/main.js -o out/bundle.js -dv",
     "watch-css": "stylus -u nib stylus/main.styl -o out/ --include-css -w",
