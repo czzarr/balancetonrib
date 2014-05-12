@@ -184,7 +184,7 @@ Site.prototype.serveStatic = function () {
   var out = static(path.join(__dirname, '/out'))
   var bowerComponents = static(path.join(__dirname, '/bower_components'))
   var nodeModules = static(path.join(__dirname, '/node_modules'))
-  var images = static(path.join(__dirname, '/static/images'))
+  var images = static(path.join(__dirname, '/static'))
   self.app.use(favicon(path.join(__dirname, 'static/images/favicon.ico')))
   self.app.use(out)
   self.app.use(bowerComponents)
