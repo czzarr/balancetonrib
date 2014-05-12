@@ -21,7 +21,6 @@ var model = require('./model')
 var MongoStore = require('connect-mongo')(express)
 var passport = require('passport')
 var path = require('path')
-var raven = require('raven')
 var request = require('request')
 var run = require('./run')
 var secrets = require('./secrets')
@@ -45,11 +44,6 @@ Site.prototype.start = function (done) {
 
   self.app = express()
   self.server = http.createServer(self.app)
-
-  // getsentry
-  if (config.isProd) {
-    self.app.use(raven.middleware.express('https://' + secrets.sentry.clientID + ':' + secrets.sentry.clientSecret + '@app.getsentry.com/' + secrets.sentry.appID))
-  }
 
   // Trust the X-Forwarded-* headers from nginx
   self.app.enable('trust proxy')
