@@ -76,7 +76,7 @@ html(lang='fr')
       link(rel='stylesheet', href='/selectize/dist/css/selectize.bootstrap3.css')
       link(rel='stylesheet', href='/css/main.css')
     else
-      link(rel='stylesheet', href='/css/balancetonrib.css')
+      link(rel='stylesheet', href=config.cssPath)
 
 
     link(rel='canonical', href='https://balancetonrib.com')
@@ -87,7 +87,7 @@ html(lang='fr')
 
     block body
 
-    script(src='/js/bundle.js')
+    script(src=config.jsPath)
 
 
     // Facebook Like
