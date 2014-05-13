@@ -11,7 +11,7 @@ module.exports = function (app) {
   app.get(
     '/login/facebook/callback',
     ssl.ensureSSL,
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
       res.redirect(req.session.returnTo || '/')
   })
