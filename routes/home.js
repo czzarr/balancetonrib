@@ -1,9 +1,14 @@
 var async = require('async')
+var auth = require('../lib/auth')
 var model = require('../model')
 var ssl = require('../lib/ssl')
 
 module.exports = function (app) {
-  app.get('/', ssl.ensureSSL, function (req, res, next) {
+  app.get(
+    '/',
+    ssl.ensureSSL,
+    auth.returnTo,
+    function (req, res, next) {
     if (req.user)
       async.auto({
           rib: function (cb) {

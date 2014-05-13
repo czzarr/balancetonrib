@@ -1,9 +1,10 @@
 var _ = require('lodash')
 var async = require('async')
+var auth = require('../lib/auth')
 var model = require('../model')
 
 module.exports = function (app) {
-  app.get('/u/:fbId', function (req, res, next) {
+  app.get('/u/:fbId', auth.ensureAuth, function (req, res, next) {
     async.auto({
         ribs: function (cb) {
           model.Rib
