@@ -46,7 +46,7 @@ auto({
 
   cssRename: ['MD5_CSS', 'removeOldCSS', function (cb, r) {
     var src = config.out + '/css/main.css'
-    var dest = config.out + '/js/main-' + r.MD5_CSS + '.css'
+    var dest = config.out + '/css/main-' + r.MD5_CSS + '.css'
     cp.exec('cp ' + src + ' ' + dest, cb)
   }]
 })
