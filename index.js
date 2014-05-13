@@ -1,6 +1,6 @@
 var config = require('./config')
 if (config.isProd) {
-  require('newrelic')
+  var newrelic = require('newrelic')
 }
 
 var _ = require('lodash')
@@ -52,6 +52,9 @@ Site.prototype.start = function (done) {
   self.app.set('views', path.join(__dirname, 'views'))
   self.app.set('view engine', 'jade')
   self.app.locals.config = config
+  if (config.isProd) {
+    self.app.locals.newrelic = newrelic
+  }
 
   // Logging
   self.app.use(logger(config.isProd ? ':date :remote-addr :method :url :status :res[content-length] :response-time ms' : 'dev' ))
