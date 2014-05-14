@@ -13,5 +13,6 @@ $('#friends').selectize({
   onChange: function (value) {
     window.location.href = '/u/' + value
   },
-  maxOptions: 10
+  maxOptions: 10,
+  sortField:
 })
