@@ -4,12 +4,19 @@
 @import 'links'
 @import 'typography'
 
+html
+  // sticky footer
+  min-height 100%
+  position relative
 body
   background-color GRAY_LIGHTER
   color BLACK
   .wrap
     section
       padding-top 35px
+  // sticky footer
+  height 100%
+  margin-bottom 80px
 
 @import 'addRib'
 @import 'footer'
