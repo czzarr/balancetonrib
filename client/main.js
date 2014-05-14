@@ -14,5 +14,10 @@ $('#friends').selectize({
     window.location.href = '/u/' + value
   },
   maxOptions: 10,
-  sortField:
+  score: function (search) {
+    var score = this.getScoreFunction(search)
+    return function (item) {
+      return score(item) * item.mutual_friend_count
+    }
+  }
 })
