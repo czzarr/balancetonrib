@@ -14,11 +14,10 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
     nav
       if (user)
         form.navbar-form.navbar-left(role='search')
-          .form-search.search-only
-            select#friends.form-control(placeholder='Chercher le RIB d\'un(e) ami(e)...')
-              each friend in friends
-                option
-                  option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
+          select#friends.form-control(placeholder='Chercher le RIB d\'un(e) ami(e)...')
+            each friend in friends
+              option
+                option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}" }') #{friend.name}
         ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse
           unless (user.hasRib)
             li: a(href='/ribs/add') Ajouter un RIB
