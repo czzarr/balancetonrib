@@ -19,8 +19,7 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
               option
                 option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}", "mutual_friend_count": "#{friend.mutual_friend_count}" }') #{friend.name}
         ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse
-          unless (user.hasRib)
-            li: a(href='/ribs/add') Ajouter un RIB
+          li: a(href='/ribs/add') Ajouter un RIB
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown')
               +picture(user.facebook,30,30)(class='navbar-picture', alt=user.profile.name)
