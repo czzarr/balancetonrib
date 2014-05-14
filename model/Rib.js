@@ -10,13 +10,12 @@ var Rib = mongoose.Schema({
     unique: true,
     validate: [
       validate({ message: 'L\'IBAN doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
-      validate({ message: 'L\'IBAN ne peut pas être vide' }, 'notEmpty'),
-      { validator: checkIban, msg: 'IBAN invalide, veuillez vérifier.' }
+      { validator: checkIban, msg: 'IBAN invalide, veuillez vérifier.' },
+      validate({ message: 'L\'IBAN ne peut pas être vide' }, 'notEmpty')
     ]
   },
   bic: {
     type: String,
-    required: true,
     validate: [
       validate({ message: 'Le code BIC doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
       validate({ message: 'Le code BIC ne peut pas être vide' }, 'notEmpty')
