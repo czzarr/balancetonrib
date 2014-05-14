@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "selectize": "~0.9.0",
-    "bootflat": "*",
-    "bootstrap-social": "~4.2.1"
+    "bootstrap-social": "~4.2.1",
+    "bootstrap": "~3.1.1"
   }
 }
