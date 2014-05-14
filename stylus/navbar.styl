@@ -5,7 +5,10 @@
 
 .navbar-default .navbar-header .navbar-brand
   font-beaut()
-  color WHITE
+  {LINK}
+    color WHITE
+  {HOVER}
+    color MYAQUA_LIGHT
 
 .navbar-nav
   .navbar-picture
@@ -17,13 +20,22 @@
       a
         {LINK}
           color WHITE
+        {HOVER}
+          color MYAQUA_LIGHT
+
 
 .navbar-default
   .nav
     li.dropdown.open
       .dropdown-toggle
-        background-color AQUADARK
+        background-color MYAQUA_DARK
         color WHITE
       .dropdown-menu
-        background-color AQUADARK
-        color WHITE
+        .divider
+          background-color #373737
+        background-color #292929
+        a
+          {LINK}
+            color WHITE
+          {HOVER}
+            background-color MYAQUA_DARK
