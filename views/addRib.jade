@@ -6,15 +6,16 @@ block content
     h1 Ajouter un RIB
     input(type='hidden', name='_csrf', value=_csrf)
     div.form-group
-      label(for='iban') IBAN
+      label(for='iban') IBAN <small>(requis)</small>
       input.form-control(
         type='text',
         id='iban',
         name='iban',
         value=(rib && rib.iban)
       )
+      p.help-block Votre IBAN se trouve sur votre relevé de compte
     div.form-group
-      label(for='bic') Code BIC/SWIFT
+      label(for='bic') BIC/SWIFT <small>(optionnel, mais recommandé)</small>
       input.form-control(
         type='text',
         id='bic',
@@ -43,13 +44,10 @@ block content
     div
       button.btn.btn-primary.btn-block(type='submit') Valider
       a(href='https://www.gandi.net/ssl/secured/balancetonrib.com/52810/6be402b7aa', target='_blank')
-        img(src='/images/GANDI_SSL2.png', alt='Sécurisé par Gandi SSL')
+        img.center-block.gandi-lock(src='/images/GANDI_SSL2.png', alt='Sécurisé par Gandi SSL')
 
   .text-center
     small.
-      Par mesure de sécurité, votre RIB ne sera accessible qu'à vos amis
-      Facebook.
+      Rassurez-vous, une vérification algorithmique est effectuée pour valider que vous n'avez pas fait de faute de frappe dans l'IBAN.
       <br>
-      Rassurez-vous, une vérification algorithmique est effectuée pour
-      valider que
-      vous n'avez pas fait de faute de frappe dans l'IBAN.
+      Par mesure de sécurité, votre RIB ne sera accessible qu'à vos amis Facebook.
