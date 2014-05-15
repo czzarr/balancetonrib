@@ -12,11 +12,8 @@ module.exports = function (app) {
         Rib.iban = req.body.iban.toUpperCase().replace(/ /g, '')
         Rib.bic = req.body.bic.toUpperCase().replace(/ /g, '')
         Rib.country = Rib.iban.slice(0,2)
-        Rib.ibankey = Rib.iban.slice(2,4)
-        Rib.bank = Rib.iban.slice(4,9)
-        Rib.counter = Rib.iban.slice(9,14)
-        Rib.accountNumber = Rib.iban.slice(14,25)
-        Rib.ribkey = Rib.iban.slice(25)
+        Rib.name = req.body.name
+        Rib.main = !!req.body.main
         Rib._user = req.user.facebook
         Rib.save(cb)
       },
@@ -77,7 +74,7 @@ module.exports = function (app) {
       }],
       user: ['delete', function (cb, r) {
         model.User
-          .update({ facebook: req.user.facebook }, { $set: { hasRib: false } })
+          .update({ facebook: req.user.facebook }, { $inc: { hasRib: -1 } })
           .exec(cb)
       }]
     }, function (err, r) {
@@ -93,4 +90,42 @@ module.exports = function (app) {
     })
   })
 
+  app.get('/ribs/main/:ribId', auth.ensureAuth, function (req, res, next) {
+    var ribId = req.params.ribId
+
+    async.auto({
+      rib: function (cb) {
+          model.Rib
+            .findById(ribId)
+            .exec(cb)
+      },
+      permission: ['rib', function (cb, r) {
+        if (r.rib._user === req.user.facebook) {// same user
+          cb(null)
+        } else {
+          cb(new Error('Cannot main another user\'s RIB'))
+        }
+      }],
+      secondary: ['permission', function (cb, r) {
+        model.Rib
+          .update({ _user: req.user.facebook }, { $set: { main: false } }, { multi: true })
+          .exec(cb)
+      }],
+      main: ['secondary', function (cb, r) {
+        model.Rib
+          .update({ _id: ribId }, { $set: { main: true } })
+          .exec(cb)
+      }]
+    }, function (err, r) {
+      if (err) {
+        _(err.errors).map(function (error) {
+          req.flash('error', error.message)
+        })
+        res.redirect('/')
+      } else {
+        req.flash('success', 'RIB principal défini avec succès')
+        res.redirect('/u/' + req.user.facebook)
+      }
+    })
+  })
 }

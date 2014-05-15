@@ -16,18 +16,14 @@ var Rib = mongoose.Schema({
     ]
   },
   bic: {
-    type: String,
-    validate: [
-      validate({ message: 'Le code BIC doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
-      validate({ message: 'Le code BIC ne peut pas être vide' }, 'notEmpty')
-    ]
+    type: String
+  },
+  main: {
+    type: Boolean,
+    default: false
   },
   country: String,
-  ibankey: String,
-  bank: String,
-  counter: String,
-  accountNumber: String,
-  ribkey: String,
+  name: String,
   _user: {
     type: String,
     ref: 'User',

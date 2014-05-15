@@ -21,6 +21,25 @@ block content
         name='bic',
         value=(rib && rib.bic)
       )
+    div.form-group
+      label(for='name') Donnez-lui un nom
+      input.form-control(
+        type='text',
+        id='name',
+        name='name',
+        value=(rib && rib.name),
+        placeholder='Par example, le nom de votre banque'
+      )
+    if (user.hasRib > 0)
+      div.checkbox
+        label(for='main')
+          |RIB principal ?
+          input(
+            type='checkbox',
+            id='main',
+            name='main',
+            value=(rib && rib.main)
+          )
     div
       button.btn.btn-primary.btn-block(type='submit') Valider
       a(href='https://www.gandi.net/ssl/secured/balancetonrib.com/52810/6be402b7aa', target='_blank')

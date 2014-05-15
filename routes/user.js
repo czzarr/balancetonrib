@@ -9,6 +9,7 @@ module.exports = function (app) {
         ribs: function (cb) {
           model.Rib
             .find({ _user: req.params.fbId })
+            .sort({ main: -1 })
             .exec(cb)
         }
       }, function (err, r) {
