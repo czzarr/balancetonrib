@@ -15,10 +15,21 @@ block content
               if (ribs.length > 0)
                 h1 RIB
                 .rib
-                  each rib in ribs
-                    include includes/rib
-                    if (me)
-                      a(href='/ribs/delete/#{rib._id}') Supprimer
+                  ul.nav.nav-tabs
+                    each rib, i in ribs
+                      li(class=i===0?'active':'')
+                        a(href='##{rib.country}', data-toggle='tab')
+                          !=rib.name
+                          span(class='flag-icon flag-icon-'+rib.country.toLowerCase())
+                  .tab-content
+                    each rib, i in ribs
+                      div(class=i===0?'tab-pane active':'tab-pane', id=rib.country)
+                        include includes/rib
+                        if (me)
+                          ul.list-inline
+                            li: a(href='/ribs/main/#{rib._id}') En faire mon RIB principal
+                            li &middot;
+                            li: a(href='/ribs/delete/#{rib._id}') Supprimer
               else
                 h1 Pas de RIB, c'est balo.
                 div
