@@ -19,8 +19,8 @@ var User = new mongoose.Schema({
     ]
   },
   hasRib : {
-    type: Boolean,
-    default: false
+    type: Number,
+    default: 0
   },
   profile: {
     name: { type: String, default: '' },

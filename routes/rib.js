@@ -19,7 +19,7 @@ module.exports = function (app) {
       },
       user: ['rib', function (cb, r) {
         model.User
-          .update({ facebook: req.user.facebook }, { $set: { hasRib: true } })
+          .update({ facebook: req.user.facebook }, { $inc: { hasRib: 1 } })
           .exec(cb)
       }]
     }, function (err, r) {

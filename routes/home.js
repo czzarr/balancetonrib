@@ -19,7 +19,7 @@ module.exports = function (app) {
           friendsWithRib: function (cb) {
             var friends = Object.keys(res.locals.indexedFriends)
             model.User
-              .find({ hasRib: true, facebook : { $in: friends } })
+              .find({ hasRib: { $gt: 0 }, facebook : { $in: friends } })
               .select('profile facebook')
               .limit(10)
               .exec(cb)
