@@ -2,20 +2,33 @@ table.table.table-rib
   tbody
     tr
       td <strong>IBAN</strong>
-      td #{rib.iban}
+      td= rib.iban
     tr
       td <strong>BIC</strong>
-      td #{rib.bic}
-table.table.table-rib
-  thead
-    tr
-      th Code Banque
-      th Code Guichet
-      th Numéro de Compte
-      th Clé RIB
-  tbody
-    tr
-      td #{rib.bank}
-      td #{rib.counter}
-      td #{rib.accountNumber}
-      td #{rib.ribkey}
+      td= rib.bic
+
+if (rib.country === 'FR')
+  table.table.table-rib
+    thead
+      tr
+        th Code Banque
+        th Code Guichet
+        th Numéro de Compte
+        th Clé RIB
+    tbody
+      tr
+        td= rib.iban.slice(4,9)
+        td= rib.iban.slice(9,14)
+        td= rib.iban.slice(14,25)
+        td= rib.iban.slice(25)
+
+if (rib.country === 'GB')
+  table.table.table-rib
+    thead
+      tr
+        th Sort code
+        th Account number
+    tbody
+      tr
+        td= rib.iban.slice(8,10)+'-'+rib.iban.slice(10,12)+'-'+rib.iban.slice(12,14)
+        td= rib.iban.slice(14)
