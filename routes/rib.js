@@ -26,14 +26,20 @@ module.exports = function (app) {
           .exec(cb)
       }]
     }, function (err, r) {
-      if (err && err.name === 'ValidationError') {
-        _(err.errors).map(function (error) {
-          req.flash('error', error.message)
-        })
-        req.flash('rib', req.body)
-        res.redirect('/ribs/add')
-      } else if (err) {
-        next(err)
+      if (err) {
+        if (err.code === 11000) {
+          req.flash('error', 'Cet IBAN existe déjà')
+          req.flash('rib', req.body)
+          res.redirect('/ribs/add')
+        } else if (err.name === 'ValidationError') {
+          _(err.errors).map(function (error) {
+            req.flash('error', error.message)
+          })
+          req.flash('rib', req.body)
+          res.redirect('/ribs/add')
+        } else {
+          next(err)
+        }
       } else {
         req.flash('success', 'RIB ajouté avec succès')
         res.redirect('/u/' + req.user.facebook)

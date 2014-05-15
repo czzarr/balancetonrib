@@ -8,6 +8,7 @@ var Rib = mongoose.Schema({
   iban: {
     type: String,
     unique: true,
+    sparse: true,
     validate: [
       validate({ message: 'L\'IBAN doit être composé de caractères alphanumériques uniquement' }, 'isAlphanumeric'),
       { validator: checkIban, msg: 'IBAN invalide, veuillez vérifier.' },
