@@ -84,7 +84,7 @@
     "node": "0.10.x"
   },
   "devDependencies": {
-    "nodemon": "^1.0.17",
+    "nodemon": "^1.0.19",
     "watchify": "^0.8.3"
   }
 }
