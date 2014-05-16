@@ -3,9 +3,10 @@ table.table.table-rib
     tr
       td <strong>IBAN</strong>
       td= rib.iban
-    tr
-      td <strong>BIC</strong>
-      td= rib.bic
+    if (rib.bic)
+      tr
+        td <strong>BIC</strong>
+        td= rib.bic
 
 if (rib.country === 'FR')
   table.table.table-rib
