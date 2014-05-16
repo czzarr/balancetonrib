@@ -27,8 +27,9 @@ block content
                         include includes/rib
                         if (me)
                           ul.list-inline
-                            li: a(href='/ribs/main/#{rib._id}') En faire mon RIB principal
-                            li &middot;
+                            unless (rib.main)
+                              li: a(href='/ribs/main/#{rib._id}') En faire mon RIB principal
+                              li &middot;
                             li: a(href='/ribs/delete/#{rib._id}') Supprimer
               else
                 h1 Pas de RIB, c'est balo.

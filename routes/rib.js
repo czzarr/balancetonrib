@@ -13,7 +13,7 @@ module.exports = function (app) {
         Rib.bic = req.body.bic.toUpperCase().replace(/ /g, '')
         Rib.country = Rib.iban.slice(0,2)
         Rib.name = req.body.name
-        Rib.main = !!req.body.main
+        Rib.main = (req.user.hasRib > 0 ? !!req.body.main : true)
         Rib._user = req.user.facebook
         Rib.save(cb)
       },
@@ -21,6 +21,15 @@ module.exports = function (app) {
         model.User
           .update({ facebook: req.user.facebook }, { $inc: { hasRib: 1 } })
           .exec(cb)
+      }],
+      secondary: ['rib', function (cb, r) {
+        if (req.body.main) {
+          model.Rib
+            .update({ _user: req.user.facebook, iban: { $ne: r.rib[0].iban } }, { $set: { main: false } }, { multi: true })
+            .exec(cb)
+        } else {
+          cb()
+        }
       }]
     }, function (err, r) {
       if (err) {
