@@ -11,7 +11,7 @@ module.exports = function (app) {
     function (req, res, next) {
     if (req.user)
       async.auto({
-          rib: function (cb) {
+          ribs: function (cb) {
             model.Rib
               .find({ _user: req.user.facebook })
               .exec(cb)
@@ -30,7 +30,7 @@ module.exports = function (app) {
             errors: req.flash('error'),
             success: req.flash('success'),
             info: req.flash('info'),
-            rib: r.rib[0],
+            ribs: r.ribs,
             friendsWithRib: r.friendsWithRib
           })
       })
