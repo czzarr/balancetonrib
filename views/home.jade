@@ -13,12 +13,12 @@ block content
                 ul.nav.nav-tabs
                   each rib, i in ribs
                     li(class=i===0?'active':'')
-                      a(href='##{rib.country}', data-toggle='tab')
+                      a(href='##{rib.iban}', data-toggle='tab')
                         !=rib.name
                         span(class='flag-icon flag-icon-'+rib.country.toLowerCase())
                 .tab-content
                   each rib, i in ribs
-                    div(class=i===0?'tab-pane active':'tab-pane', id=rib.country)
+                    div(class=i===0?'tab-pane active':'tab-pane', id=rib.iban)
                       include includes/rib
             else
               h2 Vous n'avez pas encore ajouté votre RIB
