@@ -126,6 +126,7 @@ Site.prototype.addHeaders = function (req, res, next) {
  *
  */
 Site.prototype.fetchFriends = function (req, res, next) {
+  console.log('========USER=========', req.user);
   if (!req.user) return next()
   console.log('========ASDFASDFASDF=========', req);
   console.log('========BSDFBSDFBSDF=========', res);
