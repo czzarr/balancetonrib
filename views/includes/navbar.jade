@@ -13,11 +13,12 @@ header.navbar.navbar-default.navbar-static-top(role='navigation')
        Collect the nav links, forms, and other content for toggling 
     nav
       if (user)
-        form.navbar-form.navbar-left(role='search')
-          select#friends.form-control(placeholder='Chercher le RIB d\'un(e) ami(e)...')
-            each friend in friends
-              option
-                option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}", "mutual_friend_count": "#{friend.mutual_friend_count}" }') #{friend.name}
+        if (friends)
+          form.navbar-form.navbar-left(role='search')
+            select#friends.form-control(placeholder='Chercher le RIB d\'un(e) ami(e)...')
+              each friend in friends
+                option
+                  option(value=friend.uid, data-data='{ "pic": "#{friend.pic_square}", "mutual_friend_count": "#{friend.mutual_friend_count}" }') #{friend.name}
         ul.nav.navbar-nav.navbar-right.collapse.navbar-collapse
           li: a(href='/ribs/add') Ajouter un RIB
           li.dropdown
