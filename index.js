@@ -128,8 +128,8 @@ Site.prototype.addHeaders = function (req, res, next) {
 Site.prototype.fetchFriends = function (req, res, next) {
   console.log('========USER=========', req.user);
   if (!req.user) return next()
-  console.log('========ASDFASDFASDF=========', req);
-  console.log('========BSDFBSDFBSDF=========', res);
+  console.log('========ASDFASDFASDF=========', req.user);
+  console.log('========BSDFBSDFBSDF=========', res.url, res.body);
   friendsdb.get(req.user.facebook, function (err, value) {
     if (err) {
       if (err.notFound) {
@@ -142,7 +142,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
         var _res = res
         request.get(query, function (err, res, body) {
           if (err) return next(err)
-          console.log('=====MOTHERFUCKER=======', res);
+          console.log('=====MOTHERFUCKER=======', res.body);
           var body = JSON.parse(body)
           var friends = body.data
           function savePagedResults (paging) {
