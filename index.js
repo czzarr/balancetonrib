@@ -140,6 +140,7 @@ Site.prototype.fetchFriends = function (req, res, next) {
         request.get(query, function (err, res, body) {
           if (err) return next(err)
           var body = JSON.parse(body)
+          if (body.error) return next(new Error(body.error.message))
           var friends = body.data
           function savePagedResults (paging) {
             if (paging && paging.next) {
